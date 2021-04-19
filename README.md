@@ -4,6 +4,8 @@ Currency exchange widget/sample application
 
 Actually it was a **Home Task** for **Full Stack JavaScript Developer** position.
 
+Live demo: https://react-currency-exchange.netlify.app
+
 ## Built with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

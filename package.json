@@ -1,7 +1,22 @@
 {
   "name": "currency-exchange",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "description": "Currency exchange widget runner",
+  "author": {
+    "name": "Anton Karpenko",
+    "email": "i@karpolan.com",
+    "url": "https://karpolan.com"
+  },
   "private": true,
+  "keywords": [
+    "react",
+    "currency",
+    "currency exchange"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karpolan/currency-exchange.git"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -19,8 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [

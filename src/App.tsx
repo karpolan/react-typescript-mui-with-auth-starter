@@ -1,22 +1,24 @@
-import './App.css';
+import { AppStore } from './store';
+import { AppRouter, Routes } from './routes';
+import { ErrorBoundary } from './components';
+import { AppThemeProvider } from './theme';
 
 /**
- * Renders Main Application
+ * Root Application Component
+ * @class App
  */
 const App = () => {
   return (
-    <div className="App">
-      <header>
-        Currency Exchange Sample
-      </header>
-      <main>
-        Main content here...
-      </main>
-      <footer>
-        Copyright &copy; <a href="https://karpolan.com" target="_blank" rel="noreferrer noopener">KARPOLAN</a>
-      </footer>
-    </div>
+    <ErrorBoundary name="App">
+      <AppStore>
+        <AppThemeProvider>
+          <AppRouter>
+            <Routes />
+          </AppRouter>
+        </AppThemeProvider>
+      </AppStore>
+    </ErrorBoundary>
   );
-}
+};
 
 export default App;

@@ -7,16 +7,16 @@ import { PrivateLayout } from './Layout';
  * Also renders the "Private Layout" composition
  */
 const PrivateRoutes = () => {
-	return (
-		<PrivateLayout>
-			<Switch>
-				<Route path="/" exact component={Welcome} />
-				<Route path="/welcome" component={Welcome} />
-				<Route path="/about" component={About} />,
-				<Route component={NotFound} />
-			</Switch>
-		</PrivateLayout>
-	);
+  return (
+    <PrivateLayout>
+      <Switch>
+        <Route path="/" exact component={Welcome} />
+        <Route path="/welcome" component={Welcome} />
+        <Route path="/about" component={About} />,
+        <Route component={NotFound} />
+      </Switch>
+    </PrivateLayout>
+  );
 };
 
 export default PrivateRoutes;

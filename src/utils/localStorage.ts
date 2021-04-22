@@ -1,7 +1,7 @@
 /**
  * Smartly reads value from localStorage
  */
- export function localStorageGet(name: string, defaultValue = ''): string {
+export function localStorageGet(name: string, defaultValue = ''): string {
   const valueFromStore = localStorage.getItem(name);
   if (valueFromStore === null) return defaultValue; // No value in store, return default one
 

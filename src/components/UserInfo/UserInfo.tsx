@@ -5,26 +5,26 @@ import { Theme, makeStyles } from '@material-ui/core/styles';
 import AppLink from '../AppLink';
 
 const useStyles = makeStyles((theme: Theme) => ({
-	root: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		minHeight: 'fit-content',
-	},
-	avatar: {
-		width: 64,
-		height: 64,
-		fontSize: '3rem',
-	},
-	name: {
-		marginTop: theme.spacing(1),
-	},
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    minHeight: 'fit-content',
+  },
+  avatar: {
+    width: 64,
+    height: 64,
+    fontSize: '3rem',
+  },
+  name: {
+    marginTop: theme.spacing(1),
+  },
 }));
 
 interface UserInfoProps {
-	className?: string;
-	showAvatar?: boolean;
-	user?: any;
+  className?: string;
+  showAvatar?: boolean;
+  user?: any;
 }
 
 /**
@@ -34,25 +34,25 @@ interface UserInfoProps {
  * @param {object} [user] - logged user data {name, email, avatar...}
  */
 const UserInfo = ({ className, showAvatar = false, user, ...restOfProps }: UserInfoProps) => {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	const fullName = [user?.first_name || '', user?.last_name || ''].join(' ').trim();
-	const srcAvatar = user?.avatar ? user?.avatar : undefined;
-	const userPhoneOrEmail = user?.phone || (user?.email as string);
+  const fullName = [user?.first_name || '', user?.last_name || ''].join(' ').trim();
+  const srcAvatar = user?.avatar ? user?.avatar : undefined;
+  const userPhoneOrEmail = user?.phone || (user?.email as string);
 
-	return (
-		<div {...restOfProps} className={clsx(classes.root, className)}>
-			{showAvatar ? (
-				<AppLink to="/user" underline="none">
-					<Avatar alt={fullName || 'User Avatar'} className={classes.avatar} src={srcAvatar} />
-				</AppLink>
-			) : null}
-			<Typography className={classes.name} variant="h6">
-				{fullName || 'Current User'}
-			</Typography>
-			<Typography variant="body2">{userPhoneOrEmail || 'Loading...'}</Typography>
-		</div>
-	);
+  return (
+    <div {...restOfProps} className={clsx(classes.root, className)}>
+      {showAvatar ? (
+        <AppLink to="/user" underline="none">
+          <Avatar alt={fullName || 'User Avatar'} className={classes.avatar} src={srcAvatar} />
+        </AppLink>
+      ) : null}
+      <Typography className={classes.name} variant="h6">
+        {fullName || 'Current User'}
+      </Typography>
+      <Typography variant="body2">{userPhoneOrEmail || 'Loading...'}</Typography>
+    </div>
+  );
 };
 
 export default UserInfo;

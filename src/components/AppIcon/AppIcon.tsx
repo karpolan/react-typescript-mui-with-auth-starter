@@ -17,6 +17,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PersonIcon from '@material-ui/icons/Person';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 
 /**
  * How to use:
@@ -27,26 +29,28 @@ import PersonIcon from '@material-ui/icons/Person';
  * Note: You can use camelCase or UPPERCASE in the <AppIcon name="someIconByName" /> component
  */
 const ICONS: Record<string, React.ComponentType> = {
-	default: DefaultIcon,
-	logo: () => (
-		<SvgIcon>
-			<LogoIcon />
-		</SvgIcon>
-	),
-	close: CloseIcon,
-	menu: MenuIcon,
-	settings: SettingsIcon,
-	visibilityon: VisibilityIcon,
-	visibilityoff: VisibilityOffIcon,
-	daynight: DayNightIcon,
-	night: NightIcon,
-	day: DayIcon,
-	search: SearchIcon,
-	info: InfoIcon,
-	home: HomeIcon,
-	account: AccountCircle,
-	signup: PersonAddIcon,
-	login: PersonIcon,
+  default: DefaultIcon,
+  logo: () => (
+    <SvgIcon>
+      <LogoIcon />
+    </SvgIcon>
+  ),
+  close: CloseIcon,
+  menu: MenuIcon,
+  settings: SettingsIcon,
+  visibilityon: VisibilityIcon,
+  visibilityoff: VisibilityOffIcon,
+  daynight: DayNightIcon,
+  night: NightIcon,
+  day: DayIcon,
+  search: SearchIcon,
+  info: InfoIcon,
+  home: HomeIcon,
+  account: AccountCircle,
+  signup: PersonAddIcon,
+  login: PersonIcon,
+  logout: ExitToAppIcon,
+  notifications: NotificationsIcon,
 };
 
 /**
@@ -55,13 +59,13 @@ const ICONS: Record<string, React.ComponentType> = {
  * @param {string} [props.icon] - name of the Icon to render
  */
 interface Props {
-	name?: string; // Icon's name
-	icon?: string; // Icon's name alternate prop
+  name?: string; // Icon's name
+  icon?: string; // Icon's name alternate prop
 }
 const AppIcon: React.FC<Props> = ({ name, icon, ...restOfProps }) => {
-	const iconName = (name || icon || 'default').trim().toLowerCase();
-	const ComponentToRender = ICONS[iconName] || DefaultIcon;
-	return <ComponentToRender {...restOfProps} />;
+  const iconName = (name || icon || 'default').trim().toLowerCase();
+  const ComponentToRender = ICONS[iconName] || DefaultIcon;
+  return <ComponentToRender {...restOfProps} />;
 };
 
 export default AppIcon;

@@ -38,11 +38,15 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "prettier": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "npm install -s && react-scripts start",
     "build": "react-scripts build",
+    "type": "tsc",
+    "format": "node_modules/.bin/prettier src --write",
     "test": "react-scripts test"
   },
   "eslintConfig": {

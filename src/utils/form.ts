@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback, SyntheticEvent } from 'react';
 import validate from 'validate.js';
 import { ObjectPropByName } from './type';
@@ -9,7 +8,6 @@ export const SHARED_CONTROL_PROPS = {
   margin: 'normal', // 'dense', 'none'
   fullWidth: true,
 } as const;
-
 
 // "Schema" for formState
 interface FormState {

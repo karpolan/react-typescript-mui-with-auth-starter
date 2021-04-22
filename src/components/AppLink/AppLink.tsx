@@ -6,10 +6,10 @@ const DEFAULT_APP_LINK_COLOR = 'textSecondary'; // 'primary' // 'secondary'
 const DEFAULT_APP_LINK_UNDERLINE = 'hover'; // 'always
 
 interface Props extends MuiLinkProps {
-	children: ReactNode;
-	to?: string;
-	href?: string;
-	openInNewTab?: boolean;
+  children: ReactNode;
+  to?: string;
+  href?: string;
+  openInNewTab?: boolean;
 }
 
 /**
@@ -21,34 +21,34 @@ interface Props extends MuiLinkProps {
  * @param {boolean} [openInNewTab] - link will be opened in new tab when true
  */
 const AppLink = forwardRef<any, Props>(
-	(
-		{
-			children,
-			color = DEFAULT_APP_LINK_COLOR,
-			underline = DEFAULT_APP_LINK_UNDERLINE,
-			to,
-			href,
-			openInNewTab = Boolean(href), // Open external links in new Tab by default
-			...restOfProps
-		},
-		ref
-	) => {
-		const propsToRender = {
-			color,
-			underline,
-			...(openInNewTab ? { target: '_blank', rel: 'noreferrer noopener' } : {}),
-			...restOfProps,
-		};
-		return href ? (
-			<MuiLink ref={ref} href={href} {...propsToRender}>
-				{children}
-			</MuiLink>
-		) : (
-			<MuiLink ref={ref} component={RouterLink} to={to as string} {...propsToRender}>
-				{children}
-			</MuiLink>
-		);
-	}
+  (
+    {
+      children,
+      color = DEFAULT_APP_LINK_COLOR,
+      underline = DEFAULT_APP_LINK_UNDERLINE,
+      to,
+      href,
+      openInNewTab = Boolean(href), // Open external links in new Tab by default
+      ...restOfProps
+    },
+    ref
+  ) => {
+    const propsToRender = {
+      color,
+      underline,
+      ...(openInNewTab ? { target: '_blank', rel: 'noreferrer noopener' } : {}),
+      ...restOfProps,
+    };
+    return href ? (
+      <MuiLink ref={ref} href={href} {...propsToRender}>
+        {children}
+      </MuiLink>
+    ) : (
+      <MuiLink ref={ref} component={RouterLink} to={to as string} {...propsToRender}>
+        {children}
+      </MuiLink>
+    );
+  }
 );
 
 export default AppLink;

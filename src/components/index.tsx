@@ -5,5 +5,6 @@ import AppButton from './AppButton';
 import AppIcon from './AppIcon';
 import AppIconButton from './AppIconButton';
 import AppAlert from './AppAlert';
+import AppForm from './AppForm';
 
-export { NotImplemented, ErrorBoundary, AppLink, AppButton, AppIcon, AppIconButton, AppAlert };
+export { NotImplemented, ErrorBoundary, AppLink, AppButton, AppIcon, AppIconButton, AppAlert, AppForm };

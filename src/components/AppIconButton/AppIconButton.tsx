@@ -6,16 +6,16 @@ import { ColorName, buttonStylesByNames } from '../../utils/style';
 import AppIcon from '../AppIcon';
 
 const useStyles = makeStyles((theme: Theme) => ({
-	// Add styles for Material UI names 'primary', 'secondary', 'warning', and so on
-	...buttonStylesByNames(theme),
+  // Add styles for Material UI names 'primary', 'secondary', 'warning', and so on
+  ...buttonStylesByNames(theme),
 }));
 
 function getValidMuiColor(color: string | undefined): PropTypes.Color | undefined {
-	if (color && ['inherit', 'primary', 'secondary', 'default'].includes(color)) {
-		return color as PropTypes.Color;
-	} else {
-		return undefined;
-	}
+  if (color && ['inherit', 'primary', 'secondary', 'default'].includes(color)) {
+    return color as PropTypes.Color;
+  } else {
+    return undefined;
+  }
 }
 
 /**
@@ -23,26 +23,26 @@ function getValidMuiColor(color: string | undefined): PropTypes.Color | undefine
  * @param {string} [props.icon] - name of Icon to render inside the IconButton
  */
 interface Props extends Omit<IconButtonProps, 'color'> {
-	color?: ColorName | 'inherit';
-	icon?: string;
-	// Missing props
-	component?: React.ElementType; // Could be RouterLink, AppLink, etc.
-	to?: string; // Link prop
-	href?: string; // Link prop
+  color?: ColorName | 'inherit';
+  icon?: string;
+  // Missing props
+  component?: React.ElementType; // Could be RouterLink, AppLink, etc.
+  to?: string; // Link prop
+  href?: string; // Link prop
 }
 const AppIconButton: React.FC<Props> = ({ color, className, children, icon, title, ...restOfProps }) => {
-	const classes = useStyles();
-	const classButton = clsx(classes[color as ColorName], className);
-	const colorButton = getValidMuiColor(color);
+  const classes = useStyles();
+  const classButton = clsx(classes[color as ColorName], className);
+  const colorButton = getValidMuiColor(color);
 
-	const renderIcon = () => (
-		<IconButton className={classButton} color={colorButton} {...restOfProps}>
-			<AppIcon icon={icon} />
-			{children}
-		</IconButton>
-	);
+  const renderIcon = () => (
+    <IconButton className={classButton} color={colorButton} {...restOfProps}>
+      <AppIcon icon={icon} />
+      {children}
+    </IconButton>
+  );
 
-	return title ? <Tooltip title={title}>{renderIcon()}</Tooltip> : renderIcon();
+  return title ? <Tooltip title={title}>{renderIcon()}</Tooltip> : renderIcon();
 };
 
 export default AppIconButton;

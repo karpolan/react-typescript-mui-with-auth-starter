@@ -6,26 +6,26 @@ const APP_ALERT_SEVERITY = 'info'; // 'error' | 'info'| 'success' | 'warning'
 const APP_ALERT_VARIANT = 'standard'; // 'filled' | 'outlined' | 'standard'
 
 const useStyles = makeStyles((theme: Theme) => ({
-	root: {
-		marginTop: theme.spacing(1),
-		marginBottom: theme.spacing(1),
-	},
+  root: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 /**
  * Application styled Alert component
  */
 const AppAlert: React.FC<MuiAlertProps> = ({
-	severity = APP_ALERT_SEVERITY,
-	variant = APP_ALERT_VARIANT,
-	className,
-	onClose,
-	...restOfProps
+  severity = APP_ALERT_SEVERITY,
+  variant = APP_ALERT_VARIANT,
+  className,
+  onClose,
+  ...restOfProps
 }) => {
-	const classes = useStyles();
-	const classRoot = clsx(classes.root, className);
+  const classes = useStyles();
+  const classRoot = clsx(classes.root, className);
 
-	return <MuiAlert className={classRoot} severity={severity} variant={variant} onClose={onClose} {...restOfProps} />;
+  return <MuiAlert className={classRoot} severity={severity} variant={variant} onClose={onClose} {...restOfProps} />;
 };
 
 export default AppAlert;

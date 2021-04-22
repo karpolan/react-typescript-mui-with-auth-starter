@@ -6,11 +6,11 @@ import AboutView from './About';
  * url: /about/*
  */
 const AboutRoutes = () => {
-	return (
-		<Switch>
-			<Route component={AboutView} />
-		</Switch>
-	);
+  return (
+    <Switch>
+      <Route component={AboutView} />
+    </Switch>
+  );
 };
 
 export default AboutRoutes;

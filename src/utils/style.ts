@@ -27,7 +27,6 @@ export const paperStyle = (theme: Theme) => ({
 export const formStyle = (theme: Theme) => ({
   width: '100%',
   maxWidth: '40rem', // 640px
-  // maxWidth: '32rem', // 512px
 });
 
 /**

@@ -66,4 +66,4 @@ const AppThemeProvider: React.FunctionComponent = ({ children }) => {
   );
 };
 
-export { AppThemeProvider };
+export { AppThemeProvider, LIGHT_THEME, DARK_THEME };

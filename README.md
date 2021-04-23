@@ -1,6 +1,6 @@
 # React + Material UI + Auth starter using TypeScript
 
-The **TypeScript** edition of **Create React App** plus **Material UI** with set of **reusable components\*** and utilities to build professional **React Application** faster.
+The **TypeScript** edition of **Create React App** plus **Material UI** with set of **reusable components\** and utilities to build professional **React Application** faster.
 
 - [Source Code](https://github.com/karpolan/react-typescript-material-ui-with-auth-starter)
 - [Online Demo](https://react-typescript-material.netlify.app/)

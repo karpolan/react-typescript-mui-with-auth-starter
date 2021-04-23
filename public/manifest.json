@@ -1,6 +1,6 @@
 {
-  "short_name": "Currency Exchange",
-  "name": "Currency exchange sample application",
+  "short_name": "React TypScript Material",
+  "name": "React + Material UI + Auth starter using TypeScript",
   "icons": [
     {
       "src": "/favicon.ico",

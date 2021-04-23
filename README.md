@@ -1,33 +1,39 @@
-# Currency Exchange
+# React + Material UI + Auth starter using TypeScript
 
-Currency exchange widget/sample application
+The **TypeScript** edition of **Create React App** plus **Material UI** with set of **reusable components\*** and utilities to build professional **React Application** faster.
 
-Actually it was a **Home Task** for **Full Stack JavaScript Developer** position.
+- [Source Code](https://github.com/karpolan/react-typescript-material-ui-with-auth-starter)
+- [Online Demo](https://react-typescript-material.netlify.app/)
 
-Live demo: https://react-currency-exchange.netlify.app
+## How to use
 
-## Built with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Clone or download the repo from: https://github.com/karpolan/react-typescript-material-ui-with-auth-starter
+2. Create **Favorite Icon** images and put them into `/public/img/favicon`, the **favicon.ico** file should be paced into root of `/public` folder.
+3. Add REST or GraphQL API methods...
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn start` or `yarn dev` or `npm start` or `npm run dev`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `yarn type` or `npm run type`
 
-### `yarn test`
+Checks the code for errors and missing things
+
+### `yarn format` or `npm run format`
+
+Formats the code according to `./prettierrc.js` config
+
+### `yarn test` or `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### `yarn build` or `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.

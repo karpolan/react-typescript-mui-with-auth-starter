@@ -1,7 +1,7 @@
 {
-  "name": "currency-exchange",
-  "version": "0.2.3",
-  "description": "Currency exchange widget runner",
+  "name": "react-typescript-material",
+  "version": "1.0.0",
+  "description": "React + Material UI + Auth starter using TypeScript",
   "author": {
     "name": "Anton Karpenko",
     "email": "i@karpolan.com",
@@ -10,12 +10,13 @@
   "private": true,
   "keywords": [
     "react",
-    "currency",
-    "currency exchange"
+    "typescript",
+    "material",
+    "material ui"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/karpolan/currency-exchange.git"
+    "url": "https://github.com/karpolan/react-typescript-material-ui-with-auth-starter.git"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
@@ -43,7 +44,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "npm install -s && react-scripts start",
+    "dev": "yarn -s && react-scripts start",
     "build": "react-scripts build",
     "type": "tsc",
     "format": "node_modules/.bin/prettier src --write",

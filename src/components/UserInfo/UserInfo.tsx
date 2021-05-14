@@ -36,7 +36,7 @@ interface UserInfoProps {
 const UserInfo = ({ className, showAvatar = false, user, ...restOfProps }: UserInfoProps) => {
   const classes = useStyles();
 
-  const fullName = [user?.first_name || '', user?.last_name || ''].join(' ').trim();
+  const fullName = user?.name || [user?.nameFirst || '', user?.nameLast || ''].join(' ').trim();
   const srcAvatar = user?.avatar ? user?.avatar : undefined;
   const userPhoneOrEmail = user?.phone || (user?.email as string);
 

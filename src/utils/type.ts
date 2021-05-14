@@ -6,6 +6,6 @@ export type ObjectPropByName = Record<string, any>;
  */
 export declare interface LinkToPage {
   title?: string;
-  href?: string;
+  path?: string;
   icon?: string;
 }

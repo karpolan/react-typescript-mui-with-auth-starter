@@ -42,17 +42,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 const SIDE_BAR_PUBLIC_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
-    href: '/auth/login',
+    path: '/auth/login',
     icon: 'login',
   },
   {
     title: 'Sign Up',
-    href: '/auth/signup',
+    path: '/auth/signup',
     icon: 'signup',
   },
   {
     title: 'About',
-    href: '/about',
+    path: '/about',
     icon: 'info',
   },
 ];

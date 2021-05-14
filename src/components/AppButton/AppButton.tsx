@@ -4,7 +4,11 @@ import Box from '@material-ui/core/Box';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { buttonStylesByNames, ColorName } from '../../utils/style';
 
+/**
+ * Note: You can change these const to control default appearance of the AppButton component
+ */
 const APP_BUTTON_VARIANT = 'contained'; // | 'text' | 'outlined'
+const APP_BUTTON_MARGIN = 1;
 
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
@@ -31,7 +35,7 @@ interface Props extends Omit<ButtonProps, 'color'> {
 }
 
 /**
- * Application styled Material UI Button
+ * Application styled Material UI Button with Box around to specify margins using props
  * @class AppButton
  * @param {string} [color] - name of color from Material UI palette 'primary', 'secondary', 'warning', and so on
  * @param {string} [children] - content to render, overrides .label and .text
@@ -39,16 +43,16 @@ interface Props extends Omit<ButtonProps, 'color'> {
  * @param {string} [text] - text to render, alternate to .label
  */
 const AppButton: React.FC<Props> = ({
-  className,
   children,
+  className,
   color = 'default',
   label,
-  text,
   m = 0,
-  mt = 1,
-  mb = 1,
-  ml = 1,
-  mr = 1,
+  mt = APP_BUTTON_MARGIN,
+  mb = APP_BUTTON_MARGIN,
+  ml = APP_BUTTON_MARGIN,
+  mr = APP_BUTTON_MARGIN,
+  text,
   underline = 'none',
   ...restOfProps
 }) => {

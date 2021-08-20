@@ -1,5 +1,6 @@
 import { Card, CardActions, CardContent, CardHeader, Divider, Grid, Link, Typography } from '@material-ui/core';
 import { AppButton, AppLink, AppIconButton } from '../../components';
+import DialogsSection from './DialogsSection';
 
 /**
  * Renders "About" view
@@ -8,7 +9,7 @@ import { AppButton, AppLink, AppIconButton } from '../../components';
 const AboutView = () => {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={3}>
         <Card>
           <CardHeader title="Application title here..." subheader="Version 0.1" />
           <CardContent>Detailed description of the application here...</CardContent>
@@ -18,6 +19,10 @@ const AboutView = () => {
             </AppLink>
           </CardActions>
         </Card>
+      </Grid>
+
+      <Grid item xs={12} md={3}>
+        <DialogsSection />
       </Grid>
 
       <Grid item xs={12} md={6}>

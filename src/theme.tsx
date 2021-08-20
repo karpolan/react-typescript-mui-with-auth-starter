@@ -3,7 +3,7 @@
  * See for details: https://material-ui.com/customization/default-theme/?expand-path=$.palette
  * Martial Color tool: https://material.io/resources/color
  */
-import { createMuiTheme, ThemeOptions, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useAppStore } from './store/AppStore';
 
@@ -55,8 +55,8 @@ const DARK_THEME: ThemeOptions = {
  */
 const AppThemeProvider: React.FunctionComponent = ({ children }) => {
   const [state] = useAppStore();
-  // const theme = useMemo(() => (state.darkMode ? createMuiTheme(DARK_THEME) : createMuiTheme(LIGHT_THEME)));
-  const theme = state.darkMode ? createMuiTheme(DARK_THEME) : createMuiTheme(LIGHT_THEME);
+  // const theme = useMemo(() => (state.darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME)));
+  const theme = state.darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
 
   return (
     <ThemeProvider theme={theme}>

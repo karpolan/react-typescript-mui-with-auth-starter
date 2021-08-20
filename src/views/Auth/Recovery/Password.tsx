@@ -64,7 +64,7 @@ const RecoveryPasswordView = ({ email = '' }: Props) => {
             </AppAlert>
           ) : null}
 
-          <Grid container justify="center" alignItems="center">
+          <Grid container justifyContent="center" alignItems="center">
             <AppButton type="submit" disabled={!formState.isValid}>
               Send Password Recovery Email
             </AppButton>

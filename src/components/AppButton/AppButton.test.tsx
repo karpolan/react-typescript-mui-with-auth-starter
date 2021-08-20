@@ -18,6 +18,7 @@ function testButtonColor(colorName: string, expectedClassName = colorName, ignor
 
     let button = await span.closest('button'); // parent <button> element
     expect(button).toBeDefined();
+    // console.log('button.className:', button?.className)
     if (!ignoreClassName) {
       expect(button?.className?.includes(`makeStyles-${expectedClassName}`)).toBeTruthy(); // There is "makeStyles-[expectedClassName]-xxx" class
     }

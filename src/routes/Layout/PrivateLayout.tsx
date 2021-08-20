@@ -55,22 +55,22 @@ function updateDocumentTitle(title = '') {
 const SIDE_BAR_PRIVATE_ITEMS: Array<LinkToPage> = [
   {
     title: 'Home',
-    href: '/',
+    path: '/',
     icon: 'home',
   },
   {
     title: 'Profile',
-    href: '/user',
+    path: '/user',
     icon: 'account',
   },
   {
     title: 'About',
-    href: '/about',
+    path: '/about',
     icon: 'info',
   },
   {
     title: 'Dev Tools',
-    href: '/dev',
+    path: '/dev',
     icon: 'settings',
   },
 ];
@@ -78,7 +78,7 @@ const SIDE_BAR_PRIVATE_ITEMS: Array<LinkToPage> = [
 /**
  * Renders "Private Layout" composition
  */
-const Layout: React.FC = ({ children }) => {
+const PrivateLayout: React.FC = ({ children }) => {
   const [state] = useAppStore();
   const [openSideBar, setOpenSideBar] = useState(false);
   const theme = useTheme();
@@ -131,4 +131,4 @@ const Layout: React.FC = ({ children }) => {
   );
 };
 
-export default Layout;
+export default PrivateLayout;

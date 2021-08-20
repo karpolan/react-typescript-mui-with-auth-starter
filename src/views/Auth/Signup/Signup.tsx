@@ -252,7 +252,7 @@ const SignupView = () => {
             </AppAlert>
           ) : null}
 
-          <Grid container justify="center" alignItems="center">
+          <Grid container justifyContent="center" alignItems="center">
             <AppButton type="submit" disabled={!(formState.isValid && agree)}>
               Confirm and Sign Up
             </AppButton>

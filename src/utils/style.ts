@@ -32,7 +32,9 @@ export const formStyle = (theme: Theme) => ({
 /**
  * Makes style to use with Material UI dialogs across the App
  */
-export const dialogStyles = (theme: Theme) => ({
+export const dialogStyles = (
+  theme: Theme
+): { xButton: any; paper: any; formControl: any; content: any; actions: any } => ({
   xButton: {
     position: 'absolute',
     right: theme.spacing(1) / 2,
@@ -49,6 +51,10 @@ export const dialogStyles = (theme: Theme) => ({
   formControl: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+  },
+  content: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
   actions: {
     paddingLeft: theme.spacing(3),

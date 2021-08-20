@@ -67,8 +67,10 @@ const useAppStore = (): IAppContext => useContext(AppContext);
 interface WithAppStoreProps {
   store: object;
 }
-const withAppStore = (Component: React.ComponentType<WithAppStoreProps>): React.FC => (props) => {
-  return <Component {...props} store={useAppStore()} />;
-};
+const withAppStore =
+  (Component: React.ComponentType<WithAppStoreProps>): React.FC =>
+  (props) => {
+    return <Component {...props} store={useAppStore()} />;
+  };
 
 export { AppStore, AppContext, useAppStore, withAppStore };

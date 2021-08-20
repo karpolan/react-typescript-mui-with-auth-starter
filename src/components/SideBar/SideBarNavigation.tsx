@@ -35,8 +35,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 /**
- * Renders list of Navigation Items for SideBar
- * @param {array} props.links - list of objects to render as navigation links
+ * Renders list of Navigation Items inside SideBar
+ * @param {string} [prop.className] - optional className for styling
+ * @param {array} props.items - list of objects to render as navigation links
  * @param {boolean} [props.showIcons] - icons in links are visible when true
  * @param {func} [props.afterLinkClink] - optional callback called when some link was clicked
  */
@@ -59,11 +60,11 @@ const SideBarNavigation: React.FC<Props> = ({
     <nav>
       <List className={classRoot} {...restOfProps}>
         {items.map((link) => (
-          <ListItem key={`${link.title}-${link.href}`} className={classes.item} disableGutters>
+          <ListItem key={`${link.title}-${link.path}`} className={classes.item} disableGutters>
             <Button
               className={classes.button}
               component={SideBarLink}
-              to={link.href as string}
+              to={link.path as string}
               onClick={afterLinkClick}
             >
               <div className={classes.iconOrMargin}>{showIcons && link.icon ? <AppIcon icon={link.icon} /> : null}</div>

@@ -31,6 +31,7 @@ interface Props extends Omit<ButtonProps, 'color'> {
   component?: React.ElementType; // Could be RouterLink, AppLink, etc.
   to?: string; // Link prop
   href?: string; // Link prop
+  openInNewTab?: boolean; // Link prop
   underline?: 'none' | 'hover' | 'always'; // Link prop
 }
 

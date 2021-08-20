@@ -30,19 +30,25 @@ interface Props extends Omit<IconButtonProps, 'color'> {
   to?: string; // Link prop
   href?: string; // Link prop
 }
-const AppIconButton: React.FC<Props> = ({ color, className, children, icon, title, ...restOfProps }) => {
+const AppIconButton: React.FC<Props> = ({ color, className, children, disabled, icon, title, ...restOfProps }) => {
   const classes = useStyles();
   const classButton = clsx(classes[color as ColorName], className);
   const colorButton = getValidMuiColor(color);
 
   const renderIcon = () => (
-    <IconButton className={classButton} color={colorButton} {...restOfProps}>
+    <IconButton className={classButton} color={colorButton} disabled={disabled} {...restOfProps}>
       <AppIcon icon={icon} />
       {children}
     </IconButton>
   );
 
-  return title ? <Tooltip title={title}>{renderIcon()}</Tooltip> : renderIcon();
+  // When title is set, wrap te IconButton with Tooltip.
+  // Note: when IconButton is disabled the Tooltip is not working, so we don't need it
+  if (title && !disabled) {
+    return <Tooltip title={title}>{renderIcon()}</Tooltip>;
+  }
+
+  return title && !disabled ? <Tooltip title={title}>{renderIcon()}</Tooltip> : renderIcon();
 };
 
 export default AppIconButton;

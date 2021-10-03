@@ -1,7 +1,7 @@
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
 
 export type ColorName =
-  | 'default'
+  | 'default' // TODO: MUI 5.x removes 'default' form Buttons, we need to fix this
   | 'primary'
   | 'secondary'
   | 'error'
@@ -37,15 +37,16 @@ export const dialogStyles = (
 ): { xButton: any; paper: any; formControl: any; content: any; actions: any } => ({
   xButton: {
     position: 'absolute',
-    right: theme.spacing(1) / 2,
-    top: theme.spacing(1) / 2,
+    right: theme.spacing(1) / 2, // TODO: MUI v5 returns '16px' instead of 16
+    top: theme.spacing(1) / 2, // TODO: MUI v5 returns '16px' instead of 16
   },
   paper: {
     [theme.breakpoints.up('md')]: {
-      minWidth: theme.breakpoints.values.md / 2,
+      minWidth: theme.breakpoints.values.md / 2, // TODO: Verify MUI v5 theme.breakpoints.values, maybe it is also number with 'px' now
     },
-    [theme.breakpoints.down('sm')]: {
-      minWidth: theme.breakpoints.values.sm / 2,
+    [theme.breakpoints.down('md')]: {
+      // TODO: 'sm' was changed to 'md' by CodeMod
+      minWidth: theme.breakpoints.values.sm / 2, // TODO: Verify MUI v5 theme.breakpoints.values, maybe it is also number with 'px' now
     },
   },
   formControl: {
@@ -67,7 +68,7 @@ export const dialogStyles = (
  */
 export const filledStylesByNames = (theme: Theme) => ({
   // Standard MUI names
-  default: {},
+  default: {}, // TODO: MUI 5.x removes 'default' form Buttons, we need to fix this
   primary: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
@@ -109,7 +110,7 @@ export const filledStylesByNames = (theme: Theme) => ({
  */
 export const textStylesByNames = (theme: Theme) => ({
   // Standard MUI names
-  default: {},
+  default: {}, // TODO: MUI 5.x removes 'default' form Buttons, we need to fix this
   primary: {
     color: theme.palette.primary.main,
   },
@@ -143,7 +144,7 @@ export const textStylesByNames = (theme: Theme) => ({
  */
 export const buttonStylesByNames = (theme: Theme) => ({
   // Standard MUI names
-  default: {},
+  default: {}, // TODO: MUI 5.x removes 'default' form Buttons, we need to fix this
   primary: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,

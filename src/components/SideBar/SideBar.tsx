@@ -1,11 +1,12 @@
 import { useCallback } from 'react';
 import clsx from 'clsx';
-import Divider from '@material-ui/core/Divider';
-import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import Tooltip from '@material-ui/core/Tooltip';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import Divider from '@mui/material/Divider';
+import Drawer, { DrawerProps } from '@mui/material/Drawer';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import Tooltip from '@mui/material/Tooltip';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { useAppStore } from '../../store/AppStore';
 import { AppIconButton } from '../../components';
 import UserInfo from '../UserInfo/UserInfo';
@@ -60,7 +61,7 @@ const SideBar: React.FC<Props> = ({ anchor, className, open, variant, items, onC
 
   const handleSwitchDarkMode = useCallback(() => {
     dispatch({
-      type: 'SET_DARK_MODE',
+      type: 'DARK_MODE',
       darkMode: !state.darkMode,
       payload: !state.darkMode,
     });

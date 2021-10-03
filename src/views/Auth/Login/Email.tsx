@@ -1,6 +1,6 @@
 import { SyntheticEvent, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Grid, TextField, Card, CardHeader, CardContent, InputAdornment } from '@material-ui/core';
+import { Grid, TextField, Card, CardHeader, CardContent, InputAdornment } from '@mui/material';
 import { useAppStore } from '../../../store';
 import { AppButton, AppLink, AppIconButton, AppAlert, AppForm } from '../../../components';
 import { useAppForm, SHARED_CONTROL_PROPS, eventPreventDefault } from '../../../utils/form';

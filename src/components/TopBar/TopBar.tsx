@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { makeStyles, Theme, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Theme, AppBar, Toolbar, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import AppIconButton from '../AppIconButton';
 
 const useStyles = makeStyles((theme: Theme) => ({

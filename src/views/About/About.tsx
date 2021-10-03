@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardHeader, Divider, Grid, Link, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardHeader, Divider, Grid, Link, Typography } from '@mui/material';
 import { AppButton, AppLink, AppIconButton } from '../../components';
 import DialogsSection from './DialogsSection';
 

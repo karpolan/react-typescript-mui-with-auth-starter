@@ -1,6 +1,6 @@
 import { forwardRef, ReactNode } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
+import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 
 const DEFAULT_APP_LINK_COLOR = 'textSecondary'; // 'primary' // 'secondary'
 const DEFAULT_APP_LINK_UNDERLINE = 'hover'; // 'always

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { Theme, makeStyles } from '@material-ui/core/styles';
-import MuiAlert, { AlertProps as MuiAlertProps } from '@material-ui/lab/Alert';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import MuiAlert, { AlertProps as MuiAlertProps } from '@mui/material/Alert';
 
 /**
  * Note: You can change these const to control default appearance of the AppAlert component

@@ -1,4 +1,6 @@
-import { makeStyles, createStyles, DialogTitle, Theme, DialogTitleProps } from '@material-ui/core';
+import { DialogTitle, Theme, DialogTitleProps } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 import { AppIconButton } from '../../';
 import { dialogStyles } from '../../../utils/style';
 
@@ -6,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     titleContainer: {
       display: 'flex',
-      maxWidth: `calc(100% - ${theme.spacing(4)}px)`,
+      maxWidth: `calc(100% - ${theme.spacing(4)})`, // TODO: 'px)' was removed by CodeMod
     },
     title: {
       textOverflow: 'ellipsis',

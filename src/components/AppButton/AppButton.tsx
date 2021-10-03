@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { Theme, makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Button, { ButtonProps } from '@material-ui/core/Button';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import Box from '@mui/material/Box';
+import Button, { ButtonProps } from '@mui/material/Button';
 import { buttonStylesByNames, ColorName } from '../../utils/style';
 
 /**

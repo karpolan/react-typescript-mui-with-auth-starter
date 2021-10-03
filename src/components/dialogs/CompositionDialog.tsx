@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
-import { makeStyles, createStyles, Dialog, DialogActions, DialogContent, DialogProps } from '@material-ui/core';
+import { Dialog, DialogActions, DialogContent, DialogProps } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 import { AppDialogTitle } from './components';
 import { dialogStyles } from '../../utils/style';
 

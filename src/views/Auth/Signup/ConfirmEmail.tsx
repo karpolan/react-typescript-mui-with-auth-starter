@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Card, CardHeader, CardContent, TextField } from '@material-ui/core';
+import { Card, CardHeader, CardContent, TextField } from '@mui/material';
 import { SHARED_CONTROL_PROPS } from '../../../utils/form';
 import { AppAlert, AppForm } from '../../../components';
 

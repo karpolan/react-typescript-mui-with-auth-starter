@@ -56,13 +56,14 @@ const AppButton: React.FC<Props> = ({
   mr = APP_BUTTON_MARGIN,
   text,
   underline = 'none',
+  variant = APP_BUTTON_VARIANT,
   ...restOfProps
 }) => {
   const classes = useStyles();
   const classButton = clsx(classes[color as ColorName], className);
   return (
     <Box {...{ m, mt, mb, ml, mr }} className={classes.box}>
-      <Button className={classButton} variant={APP_BUTTON_VARIANT} {...{ ...restOfProps, underline }}>
+      <Button className={classButton} variant={variant} {...{ ...restOfProps, underline }}>
         {children || label || text}
       </Button>
     </Box>

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogProps } from '@mui/material';
+import { Box, Dialog, DialogActions, DialogContent, DialogProps } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import createStyles from '@mui/styles/createStyles';
 import { AppDialogTitle } from './components';
@@ -42,8 +42,11 @@ const CompositionDialog: React.FC<Props> = ({
         {title}
       </AppDialogTitle>
       <DialogContent className={classes.content}>
-        {content}
-        {children}
+        {/* Box is temporary fix for https://github.com/mui-org/material-ui/issues/27851 */}
+        <Box pt={1}>
+          {content}
+          {children}
+        </Box>
       </DialogContent>
       <DialogActions className={classes.actions}>{actions}</DialogActions>
     </Dialog>

@@ -37,19 +37,11 @@ const AppIconButton: React.FC<Props> = ({ color, className, children, disabled, 
   const colorButton = getValidMuiColor(color);
 
   const renderIcon = () => (
-    <IconButton
-      className={classButton}
-      color={colorButton}
-      disabled={disabled}
-      {...restOfProps}
-      // size="large" TODO: was added by CodeMod, do we need it?
-    >
+    <IconButton className={classButton} color={colorButton} disabled={disabled} {...restOfProps}>
       <AppIcon icon={icon} />
       {children}
     </IconButton>
   );
-
-  // TODO: in MUI 5.x Tooltips are now interactive by default. We can optimize the rendering mess :)
 
   // When title is set, wrap te IconButton with Tooltip.
   // Note: when IconButton is disabled the Tooltip is not working, so we don't need it

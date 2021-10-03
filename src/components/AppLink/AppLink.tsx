@@ -26,7 +26,7 @@ const AppLink = forwardRef<any, Props>(
       children,
       color = DEFAULT_APP_LINK_COLOR,
       underline = DEFAULT_APP_LINK_UNDERLINE,
-      to,
+      to = '',
       href,
       openInNewTab = Boolean(href), // Open external links in new Tab by default
       ...restOfProps

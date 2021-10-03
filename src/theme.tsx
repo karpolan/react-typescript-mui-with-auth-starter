@@ -3,14 +3,7 @@
  * See for details: https://material-ui.com/customization/default-theme/?expand-path=$.palette
  * Martial Color tool: https://material.io/resources/color
  */
-import {
-  createTheme,
-  DeprecatedThemeOptions,
-  ThemeProvider,
-  Theme,
-  StyledEngineProvider,
-  adaptV4Theme,
-} from '@mui/material/styles';
+import { createTheme, ThemeProvider, Theme, StyledEngineProvider, ThemeOptions } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useAppStore } from './store/AppStore';
 
@@ -38,7 +31,7 @@ const FRONT_COLORS = {
 /**
  * Material UI theme config for "Light Mode"
  */
-const LIGHT_THEME: DeprecatedThemeOptions = {
+const LIGHT_THEME: ThemeOptions = {
   palette: {
     mode: 'light',
     // background: {
@@ -52,7 +45,7 @@ const LIGHT_THEME: DeprecatedThemeOptions = {
 /**
  * Material UI theme config for "Dark Mode"
  */
-const DARK_THEME: DeprecatedThemeOptions = {
+const DARK_THEME: ThemeOptions = {
   palette: {
     mode: 'dark',
     // background: {
@@ -68,8 +61,8 @@ const DARK_THEME: DeprecatedThemeOptions = {
  */
 const AppThemeProvider: React.FunctionComponent = ({ children }) => {
   const [state] = useAppStore();
-  // const theme = useMemo(() => (state.darkMode ? createMuiTheme(DARK_THEME) : createMuiTheme(LIGHT_THEME)));
-  const theme = state.darkMode ? createTheme(adaptV4Theme(DARK_THEME)) : createTheme(adaptV4Theme(LIGHT_THEME));
+  // const theme = useMemo(() => (state.darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME)));
+  const theme = state.darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
 
   return (
     <StyledEngineProvider injectFirst>

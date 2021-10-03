@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardHeader, Divider, Grid, Link, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
 import { AppButton, AppLink, AppIconButton } from '../../components';
 import DialogsSection from './DialogsSection';
 
@@ -29,10 +29,10 @@ const AboutView = () => {
         <Card>
           <CardHeader title="AppLink" />
           <CardContent>
-            <Link color="initial">MUI initial</Link> <Link color="inherit">MUI inherit</Link>{' '}
-            <Link color="primary">MUI primary</Link> <Link color="secondary">MUI secondary</Link>{' '}
-            <Link color="textPrimary">MUI textPrimary</Link> <Link color="textSecondary">MUI textSecondary</Link>{' '}
-            <Link color="error">MUI error</Link> <br />
+            <AppLink>MUI default</AppLink> <AppLink color="inherit">MUI inherit</AppLink>{' '}
+            <AppLink color="primary">MUI primary</AppLink> <AppLink color="secondary">MUI secondary</AppLink>{' '}
+            <AppLink color="textPrimary">MUI textPrimary</AppLink>{' '}
+            <AppLink color="textSecondary">MUI textSecondary</AppLink> <AppLink color="error">MUI error</AppLink> <br />
             <AppLink to="/">Internal Link</AppLink> &nbsp;
             <AppLink to="/" openInNewTab>
               Internal Link in New Tab
@@ -62,6 +62,7 @@ const AboutView = () => {
           <CardHeader title="AppButton" />
           <CardContent>
             <AppButton ml={0}>Default</AppButton>
+            <AppButton disabled>Disabled</AppButton>
             <AppButton color="primary">Primary</AppButton>
             <AppButton color="secondary">Secondary</AppButton>
             <AppButton color="error">Error</AppButton>
@@ -91,6 +92,7 @@ const AboutView = () => {
             <AppIconButton icon="visibilityoff" color="false" title="VisibilityOff icon with False color" />
             <AppIconButton icon="visibilityon" color="true" title="VisibilityOn icon with True color" />
             <AppIconButton icon="account" color="inherit" title="Account icon with Inherit color" />
+            {/* <AppIconButton icon="close" color="primary" disabled title="Disabled Close icon with Primary color" /> */}
           </CardContent>
         </Card>
       </Grid>

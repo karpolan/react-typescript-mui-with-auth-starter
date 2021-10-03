@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
-import { Theme, makeStyles, useTheme } from '@material-ui/core/styles';
-import { Grid, useMediaQuery } from '@material-ui/core';
+import { Theme, useTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { Grid, useMediaQuery } from '@mui/material';
 import { useAppStore } from '../../store';
 import TopBar from '../../components/TopBar';
 import { ErrorBoundary } from '../../components';

@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Theme, makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, BottomNavigation, BottomNavigationAction, Grid } from '@material-ui/core/';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { AppBar, Toolbar, Typography, BottomNavigation, BottomNavigationAction, Grid } from '@mui/material/';
 import { useAppStore } from '../../store/AppStore';
 import { ErrorBoundary, AppIconButton, AppIcon } from '../../components';
 import SideBar from '../../components/SideBar/SideBar';
@@ -71,7 +72,7 @@ const PublicLayout: React.FC = ({ children }) => {
 
   const handleSwitchDarkMode = useCallback(() => {
     dispatch({
-      type: 'SET_DARK_MODE',
+      type: 'DARK_MODE',
       darkMode: !state.darkMode,
       payload: !state.darkMode,
     });
@@ -85,7 +86,7 @@ const PublicLayout: React.FC = ({ children }) => {
     if (openSideBar) setOpenSideBar(false);
   }, [openSideBar]);
 
-  const handleBottomNavigationChange = (event: React.ChangeEvent<{}>, value: any) => {
+  const handleBottomNavigationChange = (event: React.SyntheticEvent<{}>, value: any) => {
     history.push(value);
   };
 

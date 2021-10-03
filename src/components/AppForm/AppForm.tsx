@@ -1,6 +1,7 @@
 import { ReactNode, FormHTMLAttributes } from 'react';
-import { Grid } from '@material-ui/core';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import { Box, Grid } from '@mui/material';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { formStyle } from '../../utils/style';
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -21,9 +22,7 @@ const AppForm: React.FC<Props> = ({ children, ...resOfProps }) => {
   return (
     <form {...resOfProps}>
       <Grid container direction="column" alignItems="center">
-        <Grid item className={classes.formBody}>
-          {children}
-        </Grid>
+        <Box className={classes.formBody}>{children}</Box>
       </Grid>
     </form>
   );

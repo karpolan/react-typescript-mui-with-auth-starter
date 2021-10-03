@@ -1,24 +1,24 @@
-import { SvgIcon } from '@material-ui/core';
+import { SvgIcon } from '@mui/material';
 // SVG assets
 import { ReactComponent as LogoIcon } from './logo.svg';
 // Material Icons
-import DefaultIcon from '@material-ui/icons/MoreHoriz';
-import SettingsIcon from '@material-ui/icons/Settings';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
-import DayNightIcon from '@material-ui/icons/Brightness4';
-import NightIcon from '@material-ui/icons/Brightness3';
-import DayIcon from '@material-ui/icons/Brightness5';
-import SearchIcon from '@material-ui/icons/Search';
-import InfoIcon from '@material-ui/icons/Info';
-import HomeIcon from '@material-ui/icons/Home';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import PersonIcon from '@material-ui/icons/Person';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
+import DefaultIcon from '@mui/icons-material/MoreHoriz';
+import SettingsIcon from '@mui/icons-material/Settings';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import DayNightIcon from '@mui/icons-material/Brightness4';
+import NightIcon from '@mui/icons-material/Brightness3';
+import DayIcon from '@mui/icons-material/Brightness5';
+import SearchIcon from '@mui/icons-material/Search';
+import InfoIcon from '@mui/icons-material/Info';
+import HomeIcon from '@mui/icons-material/Home';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonIcon from '@mui/icons-material/Person';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
 
 /**
  * How to use:

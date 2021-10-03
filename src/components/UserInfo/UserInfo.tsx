@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import AppLink from '../AppLink';
 
 const useStyles = makeStyles((theme: Theme) => ({

@@ -10,7 +10,7 @@ import {
   FormControlLabel,
   InputAdornment,
   LinearProgress,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useAppStore } from '../../../store';
 import { AppButton, AppIconButton, AppAlert, AppForm } from '../../../components';
 import { useAppForm, SHARED_CONTROL_PROPS, eventPreventDefault } from '../../../utils/form';

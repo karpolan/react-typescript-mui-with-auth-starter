@@ -10,7 +10,7 @@ import { IAppState } from './AppStore';
 const AppReducer: React.Reducer<IAppState, any> = (state, action) => {
   // console.log('AppReducer() - action:', action);
   switch (action.type || action.action) {
-    case 'SET_CURRENT_USER':
+    case 'CURRENT_USER':
       return {
         ...state,
         currentUser: action?.currentUser || action?.payload,
@@ -27,7 +27,7 @@ const AppReducer: React.Reducer<IAppState, any> = (state, action) => {
         isAuthenticated: false,
         currentUser: undefined, // Also reset previous user data
       };
-    case 'SET_DARK_MODE': {
+    case 'DARK_MODE': {
       const darkMode = action?.darkMode ?? action?.payload;
       localStorageSet('darkMode', darkMode);
       return {

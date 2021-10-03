@@ -19,12 +19,12 @@
     "url": "https://github.com/karpolan/react-typescript-material-ui-with-auth-starter.git"
   },
   "dependencies": {
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
-    "@mui/icons-material": "^5.0.1",
-    "@mui/material": "^5.0.2",
-    "@mui/styles": "^5.0.1",
-    "date-fns": "^2.23.0",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "@mui/styles": "latest",
+    "date-fns": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",

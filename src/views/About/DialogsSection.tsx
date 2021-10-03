@@ -1,5 +1,5 @@
 import { useState, ReactNode, useCallback } from 'react';
-import { Card, CardHeader, Grid, TextField } from '@material-ui/core';
+import { Card, CardHeader, Grid, TextField } from '@mui/material';
 import { AppButton, AppIconButton } from '../../components';
 import {
   CommonDialog as MessageDialog,

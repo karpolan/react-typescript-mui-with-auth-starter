@@ -3,9 +3,15 @@
  * See for details: https://material-ui.com/customization/default-theme/?expand-path=$.palette
  * Martial Color tool: https://material.io/resources/color
  */
-import { createTheme, ThemeOptions, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { createTheme, ThemeProvider, Theme, StyledEngineProvider, ThemeOptions } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { useAppStore } from './store/AppStore';
+
+// Note: Added by CodeMod when migrate form MUI 4.x to 5x
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
 
 /**
  * Material UI theme "front" colors, "back" colors are different for Light and Dark modes
@@ -27,7 +33,7 @@ const FRONT_COLORS = {
  */
 const LIGHT_THEME: ThemeOptions = {
   palette: {
-    type: 'light',
+    mode: 'light',
     // background: {
     //   paper: '#f5f5f5', // Gray 100 - Background of "Paper" based component
     //   default: '#FFFFFF',
@@ -41,10 +47,10 @@ const LIGHT_THEME: ThemeOptions = {
  */
 const DARK_THEME: ThemeOptions = {
   palette: {
-    type: 'dark',
+    mode: 'dark',
     // background: {
     //   paper: '#424242', // Gray 800 - Background of "Paper" based component
-    //   default: '#303030',
+    //   default: '#121212',
     // },
     ...FRONT_COLORS,
   },
@@ -59,10 +65,12 @@ const AppThemeProvider: React.FunctionComponent = ({ children }) => {
   const theme = state.darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline /* Material UI Styles */ />
-      {children}
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline /* Material UI Styles */ />
+        {children}
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 

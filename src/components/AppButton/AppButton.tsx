@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { Theme, makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Button, { ButtonProps } from '@material-ui/core/Button';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import Box from '@mui/material/Box';
+import Button, { ButtonProps } from '@mui/material/Button';
 import { buttonStylesByNames, ColorName } from '../../utils/style';
 
 /**
@@ -55,13 +56,14 @@ const AppButton: React.FC<Props> = ({
   mr = APP_BUTTON_MARGIN,
   text,
   underline = 'none',
+  variant = APP_BUTTON_VARIANT,
   ...restOfProps
 }) => {
   const classes = useStyles();
   const classButton = clsx(classes[color as ColorName], className);
   return (
     <Box {...{ m, mt, mb, ml, mr }} className={classes.box}>
-      <Button className={classButton} variant={APP_BUTTON_VARIANT} {...{ ...restOfProps, underline }}>
+      <Button className={classButton} variant={variant} {...{ ...restOfProps, underline }}>
         {children || label || text}
       </Button>
     </Box>

@@ -1,15 +1,15 @@
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
 
 export type ColorName =
-  | 'default'
+  | 'default' // MUI 5.x removes 'default' form Button, we need to fix this
   | 'primary'
   | 'secondary'
-  | 'error'
-  | 'warning'
-  | 'info'
-  | 'success'
-  | 'false'
-  | 'true';
+  | 'error' // Missing in MUI 4.x
+  | 'warning' // Missing in MUI 4.x
+  | 'info' // Missing in MUI 4.x
+  | 'success' // Missing in MUI 4.x
+  | 'false' // Missing in MUI 5.x
+  | 'true'; // Missing in MUI 5.x
 
 /**
  * Makes style to use for Material UI Paper components across the App
@@ -37,14 +37,14 @@ export const dialogStyles = (
 ): { xButton: any; paper: any; formControl: any; content: any; actions: any } => ({
   xButton: {
     position: 'absolute',
-    right: theme.spacing(1) / 2,
-    top: theme.spacing(1) / 2,
+    right: theme.spacing(0.5),
+    top: theme.spacing(0.5),
   },
   paper: {
     [theme.breakpoints.up('md')]: {
       minWidth: theme.breakpoints.values.md / 2,
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       minWidth: theme.breakpoints.values.sm / 2,
     },
   },
@@ -67,7 +67,11 @@ export const dialogStyles = (
  */
 export const filledStylesByNames = (theme: Theme) => ({
   // Standard MUI names
-  default: {},
+  default: {
+    // MUI 5.x removes 'default' color from Button, we need to fix this
+    backgroundColor: theme.palette.grey[300],
+    color: 'rgba(0, 0, 0, 0.87)', // Value as theme.palette.text.primary in Light Mode
+  },
   primary: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
@@ -143,7 +147,19 @@ export const textStylesByNames = (theme: Theme) => ({
  */
 export const buttonStylesByNames = (theme: Theme) => ({
   // Standard MUI names
-  default: {},
+  default: {
+    // MUI 5.x removes 'default' color from Button, we need to fix this
+    backgroundColor: theme.palette.grey[300],
+    color: 'rgba(0, 0, 0, 0.87)', // Value as theme.palette.text.primary in Light Mode
+    '&:hover': {
+      backgroundColor: theme.palette.grey[400], // It was '#d5d5d5' in MUI 4.x
+      color: 'rgba(0, 0, 0, 0.87)', // Value as theme.palette.text.primary in Light Mode
+    },
+    '&:disabled': {
+      backgroundColor: theme.palette.grey[300], // In live MUI 4.x project lite: rgba(0, 0, 0, 0.12) dark: rgba(255, 255, 255, 0.12)
+      color: 'rgba(0, 0, 0, 0.26)', // In live MUI 4.x project lite: rgba(0, 0, 0, 0.26) dark: rgba(255, 255, 255, 0.3)
+    },
+  },
   primary: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,

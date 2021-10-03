@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { Theme, makeStyles } from '@material-ui/core/styles';
-import { PropTypes, Tooltip } from '@material-ui/core';
-import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import { PropTypes, Tooltip } from '@mui/material';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { ColorName, buttonStylesByNames } from '../../utils/style';
 import AppIcon from '../AppIcon';
 

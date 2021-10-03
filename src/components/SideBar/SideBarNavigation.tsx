@@ -1,8 +1,9 @@
 import clsx from 'clsx';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import { Theme, makeStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import AppIcon from '../AppIcon';
 import SideBarLink from './SideBarLink';
 import { LinkToPage } from '../../utils/type';

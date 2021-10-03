@@ -1,6 +1,6 @@
 import { SyntheticEvent, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Grid, TextField, Card, CardHeader, CardContent, InputAdornment } from '@material-ui/core';
+import { Button, Grid, TextField, Card, CardHeader, CardContent, InputAdornment } from '@mui/material';
 import { useAppStore } from '../../../store';
 import { AppButton, AppLink, AppIconButton, AppAlert, AppForm } from '../../../components';
 import { useAppForm, SHARED_CONTROL_PROPS, eventPreventDefault } from '../../../utils/form';
@@ -110,9 +110,9 @@ const LoginEmailView = () => {
             <AppButton type="submit" disabled={!formState.isValid}>
               Login with Email
             </AppButton>
-            <AppButton variant="text" component={AppLink} to="/auth/recovery/password">
+            <Button variant="text" color="inherit" component={AppLink} to="/auth/recovery/password">
               Forgot Password
-            </AppButton>
+            </Button>
           </Grid>
         </CardContent>
       </Card>

@@ -1,11 +1,13 @@
 import clsx from 'clsx';
-import { makeStyles, Theme, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Theme, AppBar, Toolbar, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import AppIconButton from '../AppIconButton';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    //boxShadow: 'none',
+    // boxShadow: 'none', // Uncomment to hide shadow
     minWidth: '20rem',
+    // backgroundColor: theme.palette.primary.main, // Uncomment if you also need colored background in dark mode
   },
   toolbar: {
     paddingLeft: theme.spacing(1),

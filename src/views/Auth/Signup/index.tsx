@@ -1,6 +1,7 @@
-import { Route, Switch } from 'react-router-dom';
-import SignupView from './Signup';
-import ConfirmEmailView from './ConfirmEmail';
+import { Route, Routes } from 'react-router-dom';
+import { NotFound } from '../..';
+import SignupView from './SignupView';
+import ConfirmEmailView from './ConfirmEmailView';
 
 /**
  * Routes for "Signup" flow
@@ -8,11 +9,11 @@ import ConfirmEmailView from './ConfirmEmail';
  */
 const SignupRoutes = () => {
   return (
-    <Switch>
-      <Route path="/auth/signup/confirm-email" component={ConfirmEmailView} />
-      <Route path="/auth/signup" component={SignupView} />
-      <Route component={SignupView} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<SignupView />} />
+      <Route path="confirm-email" element={<ConfirmEmailView />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

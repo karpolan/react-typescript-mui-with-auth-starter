@@ -1,5 +1,5 @@
 import { SyntheticEvent, useCallback, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Grid,
   TextField,
@@ -77,7 +77,7 @@ interface FormStateValues {
  * url: /auth/signup
  */
 const SignupView = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [, dispatch] = useAppStore();
   const [validationSchema, setValidationSchema] = useState<any>({
     ...VALIDATE_FORM_SIGNUP,
@@ -150,9 +150,9 @@ const SignupView = () => {
       }
 
       dispatch({ type: 'SIGN_UP' });
-      return history.replace('/');
+      return navigate('/', { replace: true });
     },
-    [dispatch, /*values,*/ history]
+    [dispatch, /*values,*/ navigate]
   );
 
   const handleCloseError = useCallback(() => setError(undefined), []);

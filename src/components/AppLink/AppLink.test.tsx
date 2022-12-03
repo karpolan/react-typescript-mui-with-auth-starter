@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import AppLink from './AppLink';
-import { AppRouter } from '../../routes/';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('AppLink component', () => {
   it('renders itself', async () => {
     const text = 'sample text';
     const url = 'https://example.com/';
     await render(
-      <AppRouter>
+      <BrowserRouter>
         <AppLink href={url}>{text}</AppLink>
-      </AppRouter>
+      </BrowserRouter>
     );
     const link = await screen.getByText(text);
     expect(link).toBeDefined();
@@ -22,9 +22,9 @@ describe('AppLink component', () => {
     const text = 'external link';
     const url = 'https://example.com/';
     await render(
-      <AppRouter>
+      <BrowserRouter>
         <AppLink href={url}>{text}</AppLink>
-      </AppRouter>
+      </BrowserRouter>
     );
     const link = await screen.getByText(text);
     expect(link).toBeDefined();
@@ -41,9 +41,9 @@ describe('AppLink component', () => {
     const text = 'internal link';
     const url = '/internal-link';
     await render(
-      <AppRouter>
+      <BrowserRouter>
         <AppLink to={url}>{text}</AppLink>
-      </AppRouter>
+      </BrowserRouter>
     );
     const link = await screen.getByText(text);
     expect(link).toBeDefined();
@@ -58,11 +58,11 @@ describe('AppLink component', () => {
     let text = 'external link in same tab';
     let url = 'https://example.com/';
     await render(
-      <AppRouter>
+      <BrowserRouter>
         <AppLink href={url} openInNewTab={false}>
           {text}
         </AppLink>
-      </AppRouter>
+      </BrowserRouter>
     );
     let link = await screen.getByText(text);
     expect(link).toBeDefined();
@@ -75,11 +75,11 @@ describe('AppLink component', () => {
     text = 'internal link in new tab';
     url = '/internal-link-in-new-tab';
     await render(
-      <AppRouter>
+      <BrowserRouter>
         <AppLink to={url} openInNewTab>
           {text}
         </AppLink>
-      </AppRouter>
+      </BrowserRouter>
     );
     link = await screen.getByText(text);
     expect(link).toBeDefined();
@@ -97,11 +97,11 @@ describe('AppLink component', () => {
     let url = '/internal-link-with-class';
     let className = 'someClassName';
     await render(
-      <AppRouter>
+      <BrowserRouter>
         <AppLink to={url} className={className}>
           {text}
         </AppLink>
-      </AppRouter>
+      </BrowserRouter>
     );
     let link = await screen.getByText(text);
     expect(link).toBeDefined();

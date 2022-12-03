@@ -11,7 +11,7 @@ import { useAppStore } from '../../store/AppStore';
 import { AppIconButton } from '../../components';
 import UserInfo from '../UserInfo/UserInfo';
 import SideBarNavigation from './SideBarNavigation';
-import { SIDEBAR_WIDTH } from '../../routes/Layout/PrivateLayout';
+import { SIDEBAR_WIDTH } from '../../layout/PrivateLayout';
 import { LinkToPage } from '../../utils/type';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 /**
  * Renders SideBar with Menu and User details
  * Actually for Authenticated users only, rendered in "Private Layout"
- * @class SideBar
  * @param {string} [prop.anchor] - 'left' or 'right'
  * @param {string} [prop.className] - optional className for <div> tag
  * @param {boolean} props.open - the Drawer is visible when true

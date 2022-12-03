@@ -1,6 +1,6 @@
 {
   "name": "react-typescript-material",
-  "version": "1.2.7",
+  "version": "1.3.8",
   "description": "React + Material UI + Auth starter using TypeScript",
   "author": {
     "name": "Anton Karpenko",
@@ -18,6 +18,14 @@
     "type": "git",
     "url": "https://github.com/karpolan/react-typescript-material-ui-with-auth-starter.git"
   },
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "npm i --force && react-scripts start",
+    "build": "react-scripts build",
+    "type": "tsc",
+    "format": "node_modules/.bin/prettier src --write",
+    "test": "react-scripts test"
+  },
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
@@ -29,7 +37,6 @@
     "react-dom": "latest",
     "react-router-dom": "latest",
     "react-scripts": "latest",
-    "typescript": "latest",
     "validate.js": "latest",
     "web-vitals": "latest"
   },
@@ -42,15 +49,8 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/react-router-dom": "latest",
-    "prettier": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "dev": "yarn -s && react-scripts start",
-    "build": "react-scripts build",
-    "type": "tsc",
-    "format": "node_modules/.bin/prettier src --write",
-    "test": "react-scripts test"
+    "prettier": "latest",
+    "typescript": "latest"
   },
   "eslintConfig": {
     "extends": [

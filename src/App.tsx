@@ -1,20 +1,23 @@
 import { AppStore } from './store';
-import { AppRouter, Routes } from './routes';
-import { ErrorBoundary } from './components';
 import { AppThemeProvider } from './theme';
+import Routes from './routes';
+import Layout from './layout';
+import { ErrorBoundary } from './components';
+import { BrowserRouter } from 'react-router-dom';
 
 /**
  * Root Application Component
- * @class App
  */
 const App = () => {
   return (
     <ErrorBoundary name="App">
       <AppStore>
         <AppThemeProvider>
-          <AppRouter>
-            <Routes />
-          </AppRouter>
+          <BrowserRouter>
+            <Layout>
+              <Routes />
+            </Layout>
+          </BrowserRouter>
         </AppThemeProvider>
       </AppStore>
     </ErrorBoundary>

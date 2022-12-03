@@ -25,7 +25,11 @@ const SideBarLink = forwardRef<any, NavLinkProps>(({ className, ...restOfProps }
   const classLink = clsx(className, classes.link);
   return (
     <div ref={ref} className={classes.root}>
-      <NavLink exact className={classLink} activeClassName={classes.linkActive} {...restOfProps} />
+      <NavLink
+        end
+        className={({ isActive }) => classLink + (isActive ? ` ${classes.linkActive}` : '')}
+        {...restOfProps}
+      />
     </div>
   );
 });

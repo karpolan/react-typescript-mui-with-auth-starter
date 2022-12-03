@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext } from 'react';
+import React, { createContext, useReducer, useContext, FunctionComponent, PropsWithChildren } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
@@ -31,7 +31,7 @@ const AppContext = createContext<IAppContext>([initialAppState, () => null]);
  *  <App/>
  * </AppStore>
  */
-const AppStore: React.FC = ({ children }) => {
+const AppStoreProvider: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const previousDarkMode = Boolean(localStorageGet('darkMode'));
   // const tokenExists = Boolean(loadToken());
@@ -73,4 +73,4 @@ const withAppStore =
     return <Component {...props} store={useAppStore()} />;
   };
 
-export { AppStore, AppContext, useAppStore, withAppStore };
+export { AppStoreProvider as AppStore, AppContext, useAppStore, withAppStore };

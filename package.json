@@ -20,11 +20,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "npm i --force && react-scripts start",
     "build": "react-scripts build",
-    "type": "tsc",
+    "dev": "npm i --force && react-scripts start",
     "format": "prettier ./src --write",
     "format:all": "prettier . --write",
+    "lint": "eslint ./src --ext .js,.ts,.tsx",
+    "type": "tsc",
     "test": "react-scripts test"
   },
   "dependencies": {

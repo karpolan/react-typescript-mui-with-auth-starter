@@ -1,5 +1,6 @@
-import { Route, Switch } from 'react-router-dom';
-import RecoveryPasswordView from './Password';
+import { Route, Routes } from 'react-router-dom';
+import { NotFound } from '../..';
+import RecoveryPasswordView from './RecoveryPasswordView';
 
 /**
  * Routes for "Recovery" flow
@@ -7,10 +8,11 @@ import RecoveryPasswordView from './Password';
  */
 const RecoveryRoutes = () => {
   return (
-    <Switch>
-      <Route path="/auth/recovery/password" component={RecoveryPasswordView} />
-      <Route component={RecoveryPasswordView} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<RecoveryPasswordView />} />
+      <Route path="password" element={<RecoveryPasswordView />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

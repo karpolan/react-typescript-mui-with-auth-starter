@@ -4,7 +4,7 @@ import DialogsSection from './DialogsSection';
 
 /**
  * Renders "About" view
- * url: /about/*
+ * url: /about
  */
 const AboutView = () => {
   return (

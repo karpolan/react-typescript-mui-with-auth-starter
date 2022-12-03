@@ -1,14 +1,14 @@
 import { useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Theme, useTheme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import { Grid, useMediaQuery } from '@mui/material';
-import { useAppStore } from '../../store';
-import TopBar from '../../components/TopBar';
-import { ErrorBoundary } from '../../components';
-import SideBar from '../../components/SideBar/SideBar';
-import { LinkToPage } from '../../utils/type';
+import { useAppStore } from '../store';
+import TopBar from '../components/TopBar';
+import { ErrorBoundary } from '../components';
+import SideBar from '../components/SideBar/SideBar';
+import { LinkToPage } from '../utils/type';
 
 const TITLE_PRIVATE = 'Private Web App';
 const MOBILE_SIDEBAR_ANCHOR = 'left'; // 'right';
@@ -69,11 +69,11 @@ const SIDE_BAR_PRIVATE_ITEMS: Array<LinkToPage> = [
     path: '/about',
     icon: 'info',
   },
-  {
-    title: 'Dev Tools',
-    path: '/dev',
-    icon: 'settings',
-  },
+  // {
+  //   title: 'Dev Tools',
+  //   path: '/dev',
+  //   icon: 'settings',
+  // },
 ];
 
 /**
@@ -85,12 +85,12 @@ const PrivateLayout: React.FC = ({ children }) => {
   const theme = useTheme();
   const classes = useStyles();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'), { defaultMatches: true });
-  const history = useHistory();
+  const navigation = useNavigate();
 
   const handleLogoClick = useCallback(() => {
     // Navigate to '/' when clicking on Logo/Menu icon when the SideBar is already visible
-    history.push('/');
-  }, [history]);
+    navigation('/');
+  }, [navigation]);
 
   const handleSideBarOpen = useCallback(() => {
     if (!openSideBar) setOpenSideBar(true);

@@ -38,7 +38,6 @@ interface Props extends Omit<ButtonProps, 'color'> {
 
 /**
  * Application styled Material UI Button with Box around to specify margins using props
- * @class AppButton
  * @param {string} [color] - name of color from Material UI palette 'primary', 'secondary', 'warning', and so on
  * @param {string} [children] - content to render, overrides .label and .text
  * @param {string} [label] - text to render, alternate to .text

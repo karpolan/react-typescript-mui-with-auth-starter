@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import { AppBar, Toolbar, Typography, BottomNavigation, BottomNavigationAction, Grid } from '@mui/material/';
-import { useAppStore } from '../../store/AppStore';
-import { ErrorBoundary, AppIconButton, AppIcon } from '../../components';
-import SideBar from '../../components/SideBar/SideBar';
-import { LinkToPage } from '../../utils/type';
+import { useAppStore } from '../store/AppStore';
+import { ErrorBoundary, AppIconButton, AppIcon } from '../components';
+import SideBar from '../components/SideBar/SideBar';
+import { LinkToPage } from '../utils/type';
 
 const TITLE_PUBLIC = 'Some App';
 
@@ -65,7 +65,7 @@ const PublicLayout: React.FC = ({ children }) => {
   const classes = useStyles();
   const [openSideBar, setOpenSideBar] = useState(false);
   const [state, dispatch] = useAppStore();
-  const history = useHistory();
+  const navigation = useNavigate();
 
   const title = TITLE_PUBLIC;
   document.title = title; // Also Update Tab Title
@@ -87,7 +87,7 @@ const PublicLayout: React.FC = ({ children }) => {
   }, [openSideBar]);
 
   const handleBottomNavigationChange = (event: React.SyntheticEvent<{}>, value: any) => {
-    history.push(value);
+    navigation(value);
   };
 
   return (

@@ -1,5 +1,6 @@
-import { Route, Switch } from 'react-router-dom';
-import LoginEmailView from './Email';
+import { Route, Routes } from 'react-router-dom';
+import { NotFound } from '../..';
+import LoginEmailView from './LoginEmailView';
 
 /**
  * Routes for "Login" flow
@@ -7,10 +8,11 @@ import LoginEmailView from './Email';
  */
 const LoginRoutes = () => {
   return (
-    <Switch>
-      <Route path="/auth/login/email" component={LoginEmailView} />
-      <Route component={LoginEmailView} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<LoginEmailView />} />
+      <Route path="email" element={<LoginEmailView />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

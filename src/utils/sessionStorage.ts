@@ -3,14 +3,14 @@ import { IS_SERVER } from './utils';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 /**
- * Smartly reads value from localStorage
+ * Smartly reads value from sessionStorage
  */
-export function localStorageGet(name: string, defaultValue: any = ''): any {
+export function sessionStorageGet(name: string, defaultValue: any = ''): any {
   if (IS_SERVER) {
-    return defaultValue; // We don't have access to localStorage on the server
+    return defaultValue; // We don't have access to sessionStorage on the server
   }
 
-  const valueFromStore = localStorage.getItem(name);
+  const valueFromStore = sessionStorage.getItem(name);
   if (valueFromStore === null) return defaultValue; // No value in store, return default one
 
   try {
@@ -26,9 +26,9 @@ export function localStorageGet(name: string, defaultValue: any = ''): any {
 }
 
 /**
- * Smartly writes value into localStorage
+ * Smartly writes value into sessionStorage
  */
-export function localStorageSet(name: string, value: any) {
+export function sessionStorageSet(name: string, value: any) {
   if (IS_SERVER) {
     return; // Do nothing on server side
   }
@@ -42,21 +42,21 @@ export function localStorageSet(name: string, value: any) {
     valueAsString = String(value);
   }
 
-  localStorage.setItem(name, valueAsString);
+  sessionStorage.setItem(name, valueAsString);
 }
 
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 /**
- * Deletes value by name from localStorage, if specified name is empty entire localStorage is cleared.
+ * Deletes value by name from sessionStorage, if specified name is empty entire sessionStorage is cleared.
  */
-export function localStorageDelete(name: string) {
+export function sessionStorageDelete(name: string) {
   if (IS_SERVER) {
     return; // Do nothing on server side
   }
   if (name) {
-    localStorage.removeItem(name);
+    sessionStorage.removeItem(name);
   } else {
-    localStorage.clear();
+    sessionStorage.clear();
   }
 }

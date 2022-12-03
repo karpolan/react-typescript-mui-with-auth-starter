@@ -14,7 +14,6 @@ interface Props extends MuiLinkProps {
 
 /**
  * Restyled Link for navigation in the App, support internal links by "to" prop and external links by "href" prop
- * @class AppLink
  * @param {object|function} children - content to wrap with <a> tag
  * @param {string} [to] - internal link URI
  * @param {string} [href] - external link URI

@@ -34,6 +34,7 @@ const Routes = () => {
   // }, [state.isAuthenticated, dispatch]); // Effect for every state.isAuthenticated change actually
 
   console.log('Routes() - isAuthenticated:', state.isAuthenticated);
+
   return state.isAuthenticated ? <PrivateRoutes /> : <PublicRoutes />;
 };
 export default Routes;

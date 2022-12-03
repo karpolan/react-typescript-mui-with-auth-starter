@@ -23,7 +23,8 @@
     "dev": "npm i --force && react-scripts start",
     "build": "react-scripts build",
     "type": "tsc",
-    "format": "node_modules/.bin/prettier src --write",
+    "format": "prettier ./src --write",
+    "format:all": "prettier . --write",
     "test": "react-scripts test"
   },
   "dependencies": {

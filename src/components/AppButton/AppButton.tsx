@@ -1,3 +1,4 @@
+import { FunctionComponent } from 'react';
 import clsx from 'clsx';
 import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
@@ -43,7 +44,7 @@ interface Props extends Omit<ButtonProps, 'color'> {
  * @param {string} [label] - text to render, alternate to .text
  * @param {string} [text] - text to render, alternate to .label
  */
-const AppButton: React.FC<Props> = ({
+const AppButton: FunctionComponent<Props> = ({
   children,
   className,
   color = 'default',

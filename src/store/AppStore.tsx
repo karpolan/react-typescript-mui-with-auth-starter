@@ -1,4 +1,12 @@
-import React, { createContext, useReducer, useContext, FunctionComponent, PropsWithChildren } from 'react';
+import {
+  createContext,
+  useReducer,
+  useContext,
+  FunctionComponent,
+  PropsWithChildren,
+  Dispatch,
+  ComponentType,
+} from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
@@ -6,12 +14,12 @@ import { localStorageGet } from '../utils/localStorage';
 /**
  * AppState structure and initial values
  */
-export interface IAppState {
+export interface AppStoreState {
   darkMode: boolean;
   isAuthenticated: boolean;
   currentUser?: object | undefined;
 }
-const initialAppState: IAppState = {
+const INITIAL_APP_STATE: AppStoreState = {
   darkMode: false, // Overridden by useMediaQuery('(prefers-color-scheme: dark)') in AppStore
   isAuthenticated: false, // Overridden in AppStore by checking auth token
 };
@@ -19,29 +27,29 @@ const initialAppState: IAppState = {
 /**
  * Instance of React Context for global AppStore
  */
-type IAppContext = [IAppState, React.Dispatch<any>];
-const AppContext = createContext<IAppContext>([initialAppState, () => null]);
+type AppContextReturningType = [AppStoreState, Dispatch<any>];
+const AppContext = createContext<AppContextReturningType>([INITIAL_APP_STATE, () => null]);
 
 /**
  * Main global Store as HOC with React Context API
  *
- * import {AppStore} from './store'
+ * import {AppStoreProvider} from './store'
  * ...
- * <AppStore>
+ * <AppStoreProvider>
  *  <App/>
- * </AppStore>
+ * </AppStoreProvider>
  */
 const AppStoreProvider: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const previousDarkMode = Boolean(localStorageGet('darkMode'));
   // const tokenExists = Boolean(loadToken());
 
-  const initialState: IAppState = {
-    ...initialAppState,
+  const initialState: AppStoreState = {
+    ...INITIAL_APP_STATE,
     darkMode: previousDarkMode || prefersDarkMode,
     // isAuthenticated: tokenExists,
   };
-  const value: IAppContext = useReducer(AppReducer, initialState);
+  const value: AppContextReturningType = useReducer(AppReducer, initialState);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
@@ -53,7 +61,7 @@ const AppStoreProvider: FunctionComponent<PropsWithChildren<{}>> = ({ children }
  * ...
  * const [state, dispatch] = useAppStore();
  */
-const useAppStore = (): IAppContext => useContext(AppContext);
+const useAppStore = (): AppContextReturningType => useContext(AppContext);
 
 /**
  * HOC to inject the ApStore to class component, also works for functional components
@@ -68,7 +76,7 @@ interface WithAppStoreProps {
   store: object;
 }
 const withAppStore =
-  (Component: React.ComponentType<WithAppStoreProps>): React.FC =>
+  (Component: ComponentType<WithAppStoreProps>): FunctionComponent =>
   (props) => {
     return <Component {...props} store={useAppStore()} />;
   };

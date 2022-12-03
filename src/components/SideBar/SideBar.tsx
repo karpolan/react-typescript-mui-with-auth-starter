@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { FunctionComponent, useCallback } from 'react';
 import clsx from 'clsx';
 import Divider from '@mui/material/Divider';
 import Drawer, { DrawerProps } from '@mui/material/Drawer';
@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+interface Props extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'variant' | 'onClose'> {
+  items: Array<LinkToPage>;
+}
 /**
  * Renders SideBar with Menu and User details
  * Actually for Authenticated users only, rendered in "Private Layout"
@@ -49,12 +52,9 @@ const useStyles = makeStyles((theme: Theme) => ({
  * @param {string} [prop.className] - optional className for <div> tag
  * @param {boolean} props.open - the Drawer is visible when true
  * @param {string} props.variant - variant of the Drawer, one of 'permanent', 'persistent', 'temporary'
- * @param {func} [props.onClose] - called when the Drawer is closing
+ * @param {function} [props.onClose] - called when the Drawer is closing
  */
-interface Props extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'variant' | 'onClose'> {
-  items: Array<LinkToPage>;
-}
-const SideBar: React.FC<Props> = ({ anchor, className, open, variant, items, onClose, ...restOfProps }) => {
+const SideBar: FunctionComponent<Props> = ({ anchor, className, open, variant, items, onClose, ...restOfProps }) => {
   const [state, dispatch] = useAppStore();
   const classes = useStyles();
 

@@ -1,3 +1,4 @@
+import { FunctionComponent } from 'react';
 import { SvgIcon } from '@mui/material';
 // SVG assets
 import { ReactComponent as LogoIcon } from './logo.svg';
@@ -53,16 +54,17 @@ const ICONS: Record<string, React.ComponentType> = {
   notifications: NotificationsIcon,
 };
 
+interface Props {
+  name?: string; // Icon's name
+  icon?: string; // Icon's name alternate prop
+}
+
 /**
  * Renders SVG icon by given Icon name
  * @param {string} [props.name] - name of the Icon to render
  * @param {string} [props.icon] - name of the Icon to render
  */
-interface Props {
-  name?: string; // Icon's name
-  icon?: string; // Icon's name alternate prop
-}
-const AppIcon: React.FC<Props> = ({ name, icon, ...restOfProps }) => {
+const AppIcon: FunctionComponent<Props> = ({ name, icon, ...restOfProps }) => {
   const iconName = (name || icon || 'default').trim().toLowerCase();
   const ComponentToRender = ICONS[iconName] || DefaultIcon;
   return <ComponentToRender {...restOfProps} />;

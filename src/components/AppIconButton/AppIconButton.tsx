@@ -1,3 +1,4 @@
+import { FunctionComponent } from 'react';
 import clsx from 'clsx';
 import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
@@ -19,10 +20,6 @@ function getValidMuiColor(color: string | undefined): PropTypes.Color | undefine
   }
 }
 
-/**
- * Renders Material UI IconButton with SVG icon by given Name
- * @param {string} [props.icon] - name of Icon to render inside the IconButton
- */
 interface Props extends Omit<IconButtonProps, 'color'> {
   color?: ColorName | 'inherit';
   icon?: string;
@@ -31,7 +28,20 @@ interface Props extends Omit<IconButtonProps, 'color'> {
   to?: string; // Link prop
   href?: string; // Link prop
 }
-const AppIconButton: React.FC<Props> = ({ color, className, children, disabled, icon, title, ...restOfProps }) => {
+
+/**
+ * Renders Material UI IconButton with SVG icon by given Name
+ * @param {string} [props.icon] - name of Icon to render inside the IconButton
+ */
+const AppIconButton: FunctionComponent<Props> = ({
+  color,
+  className,
+  children,
+  disabled,
+  icon,
+  title,
+  ...restOfProps
+}) => {
   const classes = useStyles();
   const classButton = clsx(classes[color as ColorName], className);
   const colorButton = getValidMuiColor(color);

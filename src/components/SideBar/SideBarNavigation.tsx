@@ -7,6 +7,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import AppIcon from '../AppIcon';
 import SideBarLink from './SideBarLink';
 import { LinkToPage } from '../../utils/type';
+import { FunctionComponent } from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -35,20 +36,21 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-/**
- * Renders list of Navigation Items inside SideBar
- * @param {string} [prop.className] - optional className for styling
- * @param {array} props.items - list of objects to render as navigation links
- * @param {boolean} [props.showIcons] - icons in links are visible when true
- * @param {func} [props.afterLinkClink] - optional callback called when some link was clicked
- */
 interface Props {
   className?: string;
   items: Array<LinkToPage>;
   showIcons?: boolean;
   afterLinkClick?: React.MouseEventHandler;
 }
-const SideBarNavigation: React.FC<Props> = ({
+
+/**
+ * Renders list of Navigation Items inside SideBar
+ * @param {string} [prop.className] - optional className for styling
+ * @param {array} props.items - list of objects to render as navigation links
+ * @param {boolean} [props.showIcons] - icons in links are visible when true
+ * @param {function} [props.afterLinkClink] - optional callback called when some link was clicked
+ */
+const SideBarNavigation: FunctionComponent<Props> = ({
   className,
   items,
   showIcons = false,

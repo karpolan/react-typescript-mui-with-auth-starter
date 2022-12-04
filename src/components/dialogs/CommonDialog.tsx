@@ -1,23 +1,10 @@
-import { ReactNode, useCallback } from 'react';
+import { FunctionComponent, ReactNode, SyntheticEvent, useCallback } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogProps } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
 import { AppButton } from '..';
 import { AppDialogTitle } from './components';
-import { ColorName, dialogStyles } from '../../utils/style';
+import { ColorName } from '../../utils/style';
+import { useDialogMinWidth } from './utils';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {},
-    ...dialogStyles(theme),
-  })
-);
-
-/**
- * Shows generic "Common" dialog
- * @param {function} props.onConfirm - event for Confirm button, called as onConfirm(data)
- * @param {function} props.onClose - event for Close and Cancel buttons and the backdrop
- */
 interface Props extends DialogProps {
   data?: unknown;
   title?: string;
@@ -27,9 +14,16 @@ interface Props extends DialogProps {
   confirmButtonText?: string;
   confirmButtonColor?: ColorName;
   onConfirm?: (data: unknown) => void;
-  onClose?: (event: {}) => void;
+  onClose?: (event: SyntheticEvent) => void;
 }
-const CommonDialog: React.FC<Props> = ({
+
+/**
+ * Shows generic "Common" dialog
+ * @component CommonDialog
+ * @param {function} props.onConfirm - event for Confirm button, called as onConfirm(data)
+ * @param {function} props.onClose - event for Close and Cancel buttons and the backdrop
+ */
+const CommonDialog: FunctionComponent<Props> = ({
   open = false, // Don't show dialog by default
   data, // optional data passed to onConfirm callback
   title = 'Missing title...',
@@ -40,9 +34,9 @@ const CommonDialog: React.FC<Props> = ({
   confirmButtonColor = 'primary',
   onConfirm,
   onClose,
-  ...props
+  ...restOfProps
 }) => {
-  const classes = useStyles();
+  const paperMinWidth = useDialogMinWidth();
 
   const handleOnConfirm = useCallback(() => {
     if (onConfirm && typeof onConfirm === 'function') {
@@ -52,20 +46,23 @@ const CommonDialog: React.FC<Props> = ({
 
   return (
     <Dialog
-      className={classes.root}
-      classes={{ paper: classes.paper }}
-      open={open}
-      onClose={onClose}
       aria-labelledby="form-dialog-title"
-      {...props}
+      open={open}
+      PaperProps={{
+        sx: {
+          minWidth: paperMinWidth,
+        },
+      }}
+      onClose={onClose}
+      {...restOfProps}
     >
       <AppDialogTitle id="form-dialog-title" onClose={onClose}>
         {title}
       </AppDialogTitle>
-      <DialogContent>{body || text}</DialogContent>
-      <DialogActions className={classes.actions}>
+      <DialogContent sx={{ py: 1 }}>{body || text}</DialogContent>
+      <DialogActions sx={{ px: 3 }}>
         {!hideCancelButton && <AppButton onClick={onClose}>Cancel</AppButton>}
-        <AppButton onClick={handleOnConfirm} color={confirmButtonColor} mr={0}>
+        <AppButton onClick={handleOnConfirm} color={confirmButtonColor} sx={{ mr: 0 }}>
           {confirmButtonText}
         </AppButton>
       </DialogActions>

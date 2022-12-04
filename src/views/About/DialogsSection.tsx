@@ -1,4 +1,4 @@
-import { useState, ReactNode, useCallback } from 'react';
+import { ChangeEvent, useState, ReactNode, useCallback } from 'react';
 import { Card, CardHeader, Grid, TextField } from '@mui/material';
 import { AppButton, AppIconButton } from '../../components';
 import {
@@ -19,7 +19,7 @@ const DialogsSection = () => {
     setModal(null);
   }, []);
 
-  const onMessageDialogConfirm = useCallback((data) => {
+  const onMessageDialogConfirm = useCallback((data: unknown) => {
     console.info('onMessageDialogConfirm() - data:', data);
     setModal(null);
   }, []);
@@ -42,7 +42,7 @@ const DialogsSection = () => {
     );
   };
 
-  const onConfirmDialogConfirm = useCallback((data) => {
+  const onConfirmDialogConfirm = useCallback((data: unknown) => {
     console.info('onConfirmDialogConfirm() - data:', data);
     setModal(null);
   }, []);
@@ -68,9 +68,18 @@ const DialogsSection = () => {
             <AppIconButton icon="search" color="warning" title="Search icon with Warning color" />
             <AppIconButton icon="info" color="info" title="Info icon with Info color" />
             <AppIconButton icon="home" color="success" title="Home icon with Success color" />
-            <AppIconButton icon="visibilityoff" color="false" title="VisibilityOff icon with False color" />
-            <AppIconButton icon="visibilityon" color="true" title="VisibilityOn icon with True color" />
+            <AppIconButton
+              icon="visibilityoff"
+              color="#FF8C00"
+              title="VisibilityOff icon with DarkOrange (#FF8C00) color"
+            />
+            <AppIconButton
+              icon="visibilityon"
+              color="rgb(50, 205, 50)"
+              title="VisibilityOn icon with LimeGreen (rgb(50, 205, 50)) color"
+            />
             <AppIconButton icon="account" color="inherit" title="Account icon with Inherit color" />
+            {/* <AppIconButton icon="close" color="primary" disabled title="Disabled Close icon with Primary color" /> */}
             <br />
             <br />
             <div>
@@ -86,11 +95,11 @@ const DialogsSection = () => {
     );
   };
 
-  const onEditEmailDialogClose = useCallback((data) => {
+  const onEditEmailDialogClose = useCallback((data: unknown) => {
     setOpenEmailDialog(false);
   }, []);
 
-  const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
@@ -115,7 +124,7 @@ const DialogsSection = () => {
           actions={
             <>
               <AppButton onClick={onEditEmailDialogClose}>Cancel</AppButton>
-              <AppButton mr={0} color="success" onClick={onEditEmailDialogClose}>
+              <AppButton sx={{ mr: 0 }} color="success" onClick={onEditEmailDialogClose}>
                 OK
               </AppButton>
             </>

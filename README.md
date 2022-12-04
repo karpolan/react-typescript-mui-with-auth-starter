@@ -8,8 +8,9 @@ The **TypeScript** edition of **Create React App** plus **Material UI** with set
 ## How to use
 
 1. Clone or download the repo from: https://github.com/karpolan/react-typescript-material-ui-with-auth-starter
-2. Create **Favorite Icon** images and put them into `/public/img/favicon`, the **favicon.ico** file should be paced into root of `/public` folder.
-3. Add REST or GraphQL API methods...
+2. Replace `_TITLE_` and `_DESCRIPTION_` in all files with own texts
+3. Create **Favorite Icon** images and put them into `/public/img/favicon`, the **favicon.ico** file should be paced into root of `/public` folder.
+4. Add your own code :)
 
 ## Available Scripts
 

@@ -1,5 +1,5 @@
 import { localStorageSet } from '../utils/localStorage';
-import { IAppState } from './AppStore';
+import { AppStoreState } from './AppStore';
 
 /**
  * Reducer for global AppStore using "Redux styled" actions
@@ -7,7 +7,7 @@ import { IAppState } from './AppStore';
  * @param {string} action.type - unique name of the action
  * @param {*} [action.payload] - optional data object or the function to get data object
  */
-const AppReducer: React.Reducer<IAppState, any> = (state, action) => {
+const AppReducer: React.Reducer<AppStoreState, any> = (state, action) => {
   // console.log('AppReducer() - action:', action);
   switch (action.type || action.action) {
     case 'CURRENT_USER':

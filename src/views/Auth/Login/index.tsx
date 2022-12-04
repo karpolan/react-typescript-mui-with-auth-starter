@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { NotFound } from '../..';
+import { NotFoundView } from '../..';
 import LoginEmailView from './LoginEmailView';
 
 /**
@@ -11,7 +11,7 @@ const LoginRoutes = () => {
     <Routes>
       <Route path="/" element={<LoginEmailView />} />
       <Route path="email" element={<LoginEmailView />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundView />} />
     </Routes>
   );
 };

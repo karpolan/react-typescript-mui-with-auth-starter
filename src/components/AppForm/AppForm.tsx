@@ -1,14 +1,5 @@
-import { ReactNode, FormHTMLAttributes } from 'react';
+import { ReactNode, FormHTMLAttributes, FunctionComponent } from 'react';
 import { Box, Grid } from '@mui/material';
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import { formStyle } from '../../utils/style';
-
-export const useStyles = makeStyles((theme: Theme) => ({
-  formBody: {
-    ...formStyle(theme),
-  },
-}));
 
 interface Props extends FormHTMLAttributes<HTMLFormElement> {
   children: ReactNode;
@@ -16,13 +7,15 @@ interface Props extends FormHTMLAttributes<HTMLFormElement> {
 
 /**
  * Application styled Form container
+ * @component AppForm
  */
-const AppForm: React.FC<Props> = ({ children, ...resOfProps }) => {
-  const classes = useStyles();
+const AppForm: FunctionComponent<Props> = ({ children, ...resOfProps }) => {
   return (
     <form {...resOfProps}>
       <Grid container direction="column" alignItems="center">
-        <Box className={classes.formBody}>{children}</Box>
+        <Box maxWidth="40rem" width="100%">
+          {children}
+        </Box>
       </Grid>
     </form>
   );

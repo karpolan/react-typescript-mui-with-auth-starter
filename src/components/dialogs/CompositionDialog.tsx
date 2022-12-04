@@ -1,54 +1,54 @@
-import { ReactNode } from 'react';
+import { FunctionComponent, ReactNode, SyntheticEvent } from 'react';
 import { Box, Dialog, DialogActions, DialogContent, DialogProps } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
 import { AppDialogTitle } from './components';
-import { dialogStyles } from '../../utils/style';
+import { useDialogMinWidth } from './utils';
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    ...dialogStyles(theme),
-  })
-);
-
-/**
- * Makes composition of Content and Actions inside the Dialog.
- */
 interface Props extends DialogProps {
   title?: string;
   content?: ReactNode;
   actions?: ReactNode;
-  onClose?: (event: {}) => void;
+  onClose?: (event: SyntheticEvent) => void;
 }
-const CompositionDialog: React.FC<Props> = ({
+
+/**
+ * Makes composition of Content and Actions inside the Dialog.
+ * @component CompositionDialog
+ */
+const CompositionDialog: FunctionComponent<Props> = ({
   actions,
   open = false, // Don't show dialog by default
   children = null,
   content = null,
   title = 'Missing title...',
   onClose,
-  ...props
+  ...restOfProps
 }) => {
-  const classes = useStyles();
+  const paperMinWidth = useDialogMinWidth();
+
   return (
     <Dialog
-      classes={{ paper: classes.paper }}
-      open={open}
-      onClose={onClose}
       aria-labelledby="form-dialog-title"
-      {...props}
+      open={open}
+      PaperProps={{
+        sx: {
+          minWidth: paperMinWidth,
+        },
+      }}
+      onClose={onClose}
+      {...restOfProps}
     >
       <AppDialogTitle id="form-dialog-title" onClose={onClose}>
         {title}
       </AppDialogTitle>
-      <DialogContent className={classes.content}>
+      <DialogContent sx={{ py: 1 }}>
         {/* Box is temporary fix for https://github.com/mui-org/material-ui/issues/27851 */}
+        {/* TODO: verify do we still need this fix */}
         <Box pt={1}>
           {content}
           {children}
         </Box>
       </DialogContent>
-      <DialogActions className={classes.actions}>{actions}</DialogActions>
+      <DialogActions sx={{ px: 3 }}>{actions}</DialogActions>
     </Dialog>
   );
 };

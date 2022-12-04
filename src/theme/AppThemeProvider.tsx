@@ -1,7 +1,7 @@
 import createCache from '@emotion/cache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
+import { FunctionComponent, useMemo, PropsWithChildren } from 'react';
 import { useAppStore } from '../store';
 import DARK_THEME from './dark';
 import LIGHT_THEME from './light';
@@ -15,7 +15,7 @@ function createEmotionCache() {
 // Client-side cache, shared for the whole session of the user in the browser.
 const CLIENT_SIDE_EMOTION_CACHE = createEmotionCache();
 
-interface Props extends PropsWithChildren<{}> {
+interface Props extends PropsWithChildren {
   emotionCache?: EmotionCache; // You can omit it if you don't want to use Emotion styling library
 }
 

@@ -17,8 +17,9 @@ const ConfirmEmailView = () => {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
+
   const token = useQuery().get(TOKEN_QUERY_PARAM) || '';
-  console.log('token:', token);
+  console.log('ConfirmEmailView() - token:', token);
 
   useEffect(() => {
     // Component Mount

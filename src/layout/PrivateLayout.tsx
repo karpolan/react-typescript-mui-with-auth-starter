@@ -1,59 +1,26 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, FunctionComponent, PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
-import clsx from 'clsx';
-import { Theme, useTheme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import { Grid, useMediaQuery } from '@mui/material';
-import { useAppStore } from '../store';
-import TopBar from '../components/TopBar';
-import { ErrorBoundary } from '../components';
-import SideBar from '../components/SideBar/SideBar';
+import { Stack } from '@mui/material';
+import { AppIconButton, ErrorBoundary } from '../components';
 import { LinkToPage } from '../utils/type';
+import { useOnMobile } from '../hooks/layout';
+import {
+  SIDEBAR_DESKTOP_ANCHOR,
+  SIDEBAR_MOBILE_ANCHOR,
+  SIDEBAR_WIDTH,
+  TOPBAR_DESKTOP_HEIGHT,
+  TOPBAR_MOBILE_HEIGHT,
+} from './config';
+import TopBar from './TopBar';
+import SideBar from './SideBar';
 
-const TITLE_PRIVATE = 'Private Web App';
-const MOBILE_SIDEBAR_ANCHOR = 'left'; // 'right';
-const DESKTOP_SIDEBAR_ANCHOR = 'left'; // 'right';
-export const SIDEBAR_WIDTH = 240; // 240px
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    minHeight: '100vh', // Full screen height
-    paddingTop: 56,
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: 64,
-    },
-  },
-  header: {},
-  shiftContent: {
-    paddingLeft: DESKTOP_SIDEBAR_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
-    paddingRight: DESKTOP_SIDEBAR_ANCHOR.includes('right') ? SIDEBAR_WIDTH : 0,
-  },
-  content: {
-    flexGrow: 1, // Takes all possible space
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(1),
-  },
-  footer: {},
-}));
+// TODO: change to your app name or other word
+const TITLE_PRIVATE = '_TITLE_ app'; // Title for pages after authentication
 
 /**
- * Centralized place in the App to update document.title
+ * SideBar navigation items with links
  */
-
-function updateDocumentTitle(title = '') {
-  if (title) {
-    document.title = `${title} - ${TITLE_PRIVATE}`;
-  } else {
-    document.title = TITLE_PRIVATE;
-  }
-  return document.title;
-}
-
-/**
- * "Link to Page" items in Sidebar
- */
-const SIDE_BAR_PRIVATE_ITEMS: Array<LinkToPage> = [
+const SIDEBAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Home',
     path: '/',
@@ -78,57 +45,83 @@ const SIDE_BAR_PRIVATE_ITEMS: Array<LinkToPage> = [
 
 /**
  * Renders "Private Layout" composition
+ * @component PrivateLayout
  */
-const PrivateLayout: React.FC = ({ children }) => {
-  const [state] = useAppStore();
-  const [openSideBar, setOpenSideBar] = useState(false);
-  const theme = useTheme();
-  const classes = useStyles();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'), { defaultMatches: true });
+const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const navigation = useNavigate();
+  const [sideBarVisible, setSideBarVisible] = useState(false);
+  const onMobile = useOnMobile();
 
-  const handleLogoClick = useCallback(() => {
-    // Navigate to '/' when clicking on Logo/Menu icon when the SideBar is already visible
-    navigation('/');
+  // Variant 1 - Sidebar is static on desktop and is a drawer on mobile
+  const sidebarOpen = onMobile ? sideBarVisible : true;
+  const sidebarVariant = onMobile ? 'temporary' : 'persistent';
+
+  // Variant 2 - Sidebar is drawer on mobile and desktop
+  // const sidebarOpen = sideBarVisible;
+  // const sidebarVariant = 'temporary';
+
+  const title = TITLE_PRIVATE;
+  document.title = title; // Also Update Tab Title
+
+  const onLogoClick = useCallback(() => {
+    // Navigate to first SideBar's item or to '/' when clicking on Logo/Menu icon when SideBar is already visible
+    navigation(SIDEBAR_ITEMS?.[0]?.path || '/');
   }, [navigation]);
 
-  const handleSideBarOpen = useCallback(() => {
-    if (!openSideBar) setOpenSideBar(true);
-  }, [openSideBar]);
+  const onSideBarOpen = () => {
+    if (!sideBarVisible) setSideBarVisible(true); // Don't re-render Layout when SideBar is already open
+  };
 
-  const handleSideBarClose = useCallback(() => {
-    if (openSideBar) setOpenSideBar(false);
-  }, [openSideBar]);
+  const onSideBarClose = () => {
+    if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
+  };
 
-  const classRoot = clsx({
-    [classes.root]: true,
-    [classes.shiftContent]: isDesktop,
-  });
-  const title = updateDocumentTitle();
-  const shouldOpenSideBar = isDesktop ? true : openSideBar;
+  console.log(
+    'Render using PrivateLayout, onMobile:',
+    onMobile,
+    'sidebarOpen:',
+    sidebarOpen,
+    'sidebarVariant:',
+    sidebarVariant
+  );
 
   return (
-    <Grid container direction="column" className={classRoot}>
-      <Grid item className={classes.header} component="header">
+    <Stack
+      direction="column"
+      sx={{
+        minHeight: '100vh', // Full screen height
+        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
+        paddingLeft: sidebarOpen && SIDEBAR_DESKTOP_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
+        paddingRight: sidebarOpen && SIDEBAR_DESKTOP_ANCHOR.includes('right') ? SIDEBAR_WIDTH : 0,
+      }}
+    >
+      <Stack component="header">
         <TopBar
-          isAuthenticated={state.isAuthenticated}
+          startNode={<AppIconButton icon="logo" onClick={sidebarOpen ? onLogoClick : onSideBarOpen} />}
           title={title}
-          onMenu={shouldOpenSideBar ? handleLogoClick : handleSideBarOpen}
         />
 
         <SideBar
-          anchor={isDesktop ? DESKTOP_SIDEBAR_ANCHOR : MOBILE_SIDEBAR_ANCHOR}
-          open={shouldOpenSideBar}
-          variant={isDesktop ? 'persistent' : 'temporary'}
-          items={SIDE_BAR_PRIVATE_ITEMS}
-          onClose={handleSideBarClose}
+          anchor={onMobile ? SIDEBAR_MOBILE_ANCHOR : SIDEBAR_DESKTOP_ANCHOR}
+          open={sidebarOpen}
+          variant={sidebarVariant}
+          items={SIDEBAR_ITEMS}
+          onClose={onSideBarClose}
         />
-      </Grid>
+      </Stack>
 
-      <Grid className={classes.content} component="main">
+      <Stack
+        component="main"
+        sx={{
+          flexGrow: 1, // Takes all possible space
+          paddingLeft: 1,
+          paddingRight: 1,
+          paddingTop: 1,
+        }}
+      >
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
-      </Grid>
-    </Grid>
+      </Stack>
+    </Stack>
   );
 };
 

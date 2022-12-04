@@ -61,6 +61,7 @@ interface Props {
 
 /**
  * Renders SVG icon by given Icon name
+ * @component AppIcon
  * @param {string} [props.name] - name of the Icon to render
  * @param {string} [props.icon] - name of the Icon to render
  */

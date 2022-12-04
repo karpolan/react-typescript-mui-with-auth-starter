@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { NotFound } from '../views';
+import { NotFoundView, UserView } from '../views';
 import AboutView from '../views/About';
 import { WelcomeView } from '../views/Welcome';
 
@@ -12,8 +12,9 @@ const PrivateRoutes = () => {
     <Routes>
       <Route path="/" element={<WelcomeView />} />
       <Route path="welcome" element={<WelcomeView />} />
+      <Route path="user" element={<UserView />} />
       <Route path="about" element={<AboutView />} />,
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundView />} />
     </Routes>
   );
 };

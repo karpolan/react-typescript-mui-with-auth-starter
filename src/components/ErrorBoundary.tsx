@@ -1,50 +1,58 @@
-import React, { Component, ErrorInfo } from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
+  children: ReactNode;
   name: string;
 }
 
 interface State {
-  error?: any;
+  hasError: boolean;
+  error?: Error;
   errorInfo?: ErrorInfo;
 }
 
 /**
  * Error boundary wrapper to save Application parts from falling
+ * @component ErrorBoundary
  * @param {string} [props.name] - name of the wrapped segment, "Error Boundary" by default
  */
 class ErrorBoundary extends Component<Props, State> {
-  state: State = {
-    error: null,
+  static defaultProps = {
+    name: 'Error Boundary',
   };
 
-  componentDidCatch(error: any, errorInfo: ErrorInfo) {
-    // Catch errors in any components below and re-render with error message
-    this.setState({
-      error: error,
-      errorInfo: errorInfo,
-    });
-    // We can also log error messages to an error reporting service here
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    // The next render will show the Error UI
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // Save information to help render Error UI
+    this.setState({ error, errorInfo });
+    // TODO: Add log error messages to an error reporting service here
   }
 
   render() {
-    const { errorInfo } = this.state;
-    if (errorInfo) {
-      // Error path
-      const { error } = this.state;
-      const { name = 'Error Boundary' } = this.props;
+    if (this.state.hasError) {
+      // Error UI rendering
       return (
         <div>
-          <h2>{name} - Something went wrong</h2>
+          <h2>{this.props.name} - Something went wrong</h2>
           <details style={{ whiteSpace: 'pre-wrap' }}>
-            {error ? error.toString() : null}
+            {this.state?.error?.toString()}
             <br />
-            {errorInfo?.componentStack}
+            {this.state?.errorInfo?.componentStack}
           </details>
         </div>
       );
     }
-    // Normally, just render children
+
+    // Normal UI rendering
     return this.props.children;
   }
 }

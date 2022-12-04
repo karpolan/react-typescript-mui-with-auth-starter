@@ -14,9 +14,9 @@ const AboutView = () => {
           <CardHeader title="Application title here..." subheader="Version 0.1" />
           <CardContent>Detailed description of the application here...</CardContent>
           <CardActions>
-            <AppLink to="/">
-              <AppButton color="primary">OK</AppButton>
-            </AppLink>
+            <AppButton to="/" color="primary">
+              OK
+            </AppButton>
           </CardActions>
         </Card>
       </Grid>
@@ -44,15 +44,9 @@ const AboutView = () => {
             </AppLink>{' '}
             &nbsp;
             <br />
-            <AppLink to="/">
-              <AppButton ml={0} size="small" label="as Default Button" />
-            </AppLink>
-            <AppLink to="/">
-              <AppButton size="small" color="primary" label="as Primary Button" />
-            </AppLink>
-            <AppLink to="/">
-              <AppButton mr={0} size="small" color="secondary" label="as Secondary Button" />
-            </AppLink>
+            <AppButton to="/" sx={{ ml: 0 }} size="small" label="as Default Button" />
+            <AppButton to="/" size="small" color="primary" label="as Primary Button" />
+            <AppButton to="/" sx={{ mr: 0 }} size="small" color="secondary" label="as Secondary Button" />
           </CardContent>
         </Card>
       </Grid>
@@ -61,7 +55,7 @@ const AboutView = () => {
         <Card>
           <CardHeader title="AppButton" />
           <CardContent>
-            <AppButton ml={0}>Default</AppButton>
+            <AppButton sx={{ ml: 0 }}>Default</AppButton>
             <AppButton disabled>Disabled</AppButton>
             <AppButton color="primary">Primary</AppButton>
             <AppButton color="secondary">Secondary</AppButton>
@@ -69,9 +63,9 @@ const AboutView = () => {
             <AppButton color="warning">Warning</AppButton>
             <AppButton color="info">Info</AppButton>
             <AppButton color="success">Success</AppButton>
-            <AppButton color="false">False</AppButton>
-            <AppButton color="true">True</AppButton>
-            <AppButton color="inherit" mr={0}>
+            <AppButton color="#FF8C00">#FF8C00</AppButton>
+            <AppButton color="rgb(50, 205, 50)">rgb(50, 205, 50)</AppButton>
+            <AppButton color="inherit" sx={{ mr: 0 }}>
               Inherit
             </AppButton>
           </CardContent>
@@ -89,8 +83,16 @@ const AboutView = () => {
             <AppIconButton icon="search" color="warning" title="Search icon with Warning color" />
             <AppIconButton icon="info" color="info" title="Info icon with Info color" />
             <AppIconButton icon="home" color="success" title="Home icon with Success color" />
-            <AppIconButton icon="visibilityoff" color="false" title="VisibilityOff icon with False color" />
-            <AppIconButton icon="visibilityon" color="true" title="VisibilityOn icon with True color" />
+            <AppIconButton
+              icon="visibilityoff"
+              color="#FF8C00"
+              title="VisibilityOff icon with DarkOrange (#FF8C00) color"
+            />
+            <AppIconButton
+              icon="visibilityon"
+              color="rgb(50, 205, 50)"
+              title="VisibilityOn icon with LimeGreen (rgb(50, 205, 50)) color"
+            />
             <AppIconButton icon="account" color="inherit" title="Account icon with Inherit color" />
             {/* <AppIconButton icon="close" color="primary" disabled title="Disabled Close icon with Primary color" /> */}
           </CardContent>

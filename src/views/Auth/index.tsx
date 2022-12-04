@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { NotFound } from '..';
+import { NotFoundView } from '..';
 import SignupRoutes from './Signup';
 import LoginRoutes from './Login';
 import RecoveryRoutes from './Recovery';
@@ -15,7 +15,7 @@ const AuthRoutes = () => {
       <Route path="signup/*" element={<SignupRoutes />} />
       <Route path="login/*" element={<LoginRoutes />} />
       <Route path="recovery/*" element={<RecoveryRoutes />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundView />} />
     </Routes>
   );
 };

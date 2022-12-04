@@ -1,46 +1,43 @@
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import { AppBar, Toolbar, Typography, BottomNavigation, BottomNavigationAction, Grid } from '@mui/material/';
+import { FunctionComponent, PropsWithChildren, useCallback, useState } from 'react';
+import { Stack } from '@mui/material/';
 import { useAppStore } from '../store/AppStore';
-import { ErrorBoundary, AppIconButton, AppIcon } from '../components';
-import SideBar from '../components/SideBar/SideBar';
+import { ErrorBoundary, AppIconButton } from '../components';
 import { LinkToPage } from '../utils/type';
+import { useOnMobile } from '../hooks/layout';
+import { BOTTOMBAR_DESKTOP_VISIBLE, TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './config';
+import { useEventSwitchDarkMode } from '../hooks/event';
+import TopBar from './TopBar';
+import SideBar from './SideBar';
+import BottomBar from './BottomBar';
 
-const TITLE_PUBLIC = 'Some App';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    minHeight: '100vh', // Full screen height
-    paddingTop: 56, // on Small screen
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: 64, // on Large screen
-    },
-  },
-  header: {},
-  toolbar: {
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-  },
-  title: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    flexGrow: 1,
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-  },
-  content: {
-    flexGrow: 1, // Takes all possible space
-    padding: theme.spacing(1),
-  },
-  footer: {},
-}));
+// TODO: change to your app name or other word
+const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentication
 
 /**
- * "Link to Page" items in Sidebar
+ * SideBar navigation items with links
  */
-const SIDE_BAR_PUBLIC_ITEMS: Array<LinkToPage> = [
+const SIDEBAR_ITEMS: Array<LinkToPage> = [
+  {
+    title: 'Log In',
+    path: '/auth/login',
+    icon: 'login',
+  },
+  {
+    title: 'Sign Up',
+    path: '/auth/signup',
+    icon: 'signup',
+  },
+  {
+    title: 'About',
+    path: '/about',
+    icon: 'info',
+  },
+];
+
+/**
+ * BottomBar navigation items with links
+ */
+const BOTTOMBAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -61,76 +58,83 @@ const SIDE_BAR_PUBLIC_ITEMS: Array<LinkToPage> = [
 /**
  * Renders "Public Layout" composition
  */
-const PublicLayout: React.FC = ({ children }) => {
-  const classes = useStyles();
-  const [openSideBar, setOpenSideBar] = useState(false);
-  const [state, dispatch] = useAppStore();
-  const navigation = useNavigate();
+const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
+  const onMobile = useOnMobile();
+  const onSwitchDarkMode = useEventSwitchDarkMode();
+  const [sideBarVisible, setSideBarVisible] = useState(false);
+  const [state] = useAppStore();
+  const bottomBarVisible = onMobile || BOTTOMBAR_DESKTOP_VISIBLE;
+
+  // Variant 1 - Sidebar is static on desktop and is a drawer on mobile
+  // const sidebarOpen = onMobile ? sideBarVisible : true;
+  // const sidebarVariant = onMobile ? 'temporary' : 'persistent';
+
+  // Variant 2 - Sidebar is drawer on mobile and desktop
+  const sidebarOpen = sideBarVisible;
+  const sidebarVariant = 'temporary';
 
   const title = TITLE_PUBLIC;
   document.title = title; // Also Update Tab Title
 
-  const handleSwitchDarkMode = useCallback(() => {
-    dispatch({
-      type: 'DARK_MODE',
-      darkMode: !state.darkMode,
-      payload: !state.darkMode,
-    });
-  }, [state, dispatch]);
+  const onSideBarOpen = useCallback(() => {
+    if (!sideBarVisible) setSideBarVisible(true); // Don't re-render Layout when SideBar is already open
+  }, [sideBarVisible]);
 
-  const handleSideBarOpen = useCallback(() => {
-    if (!openSideBar) setOpenSideBar(true);
-  }, [openSideBar]);
+  const onSideBarClose = useCallback(() => {
+    if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
+  }, [sideBarVisible]);
 
-  const handleSideBarClose = useCallback(() => {
-    if (openSideBar) setOpenSideBar(false);
-  }, [openSideBar]);
-
-  const handleBottomNavigationChange = (event: React.SyntheticEvent<{}>, value: any) => {
-    navigation(value);
-  };
+  console.log(
+    'Render using PublicLayout, onMobile:',
+    onMobile,
+    'sidebarOpen:',
+    sidebarOpen,
+    'sidebarVariant:',
+    sidebarVariant
+  );
 
   return (
-    <Grid container direction="column" className={classes.root}>
-      <Grid item className={classes.header} component="header">
-        <AppBar component="div">
-          <Toolbar className={classes.toolbar} disableGutters>
-            <AppIconButton icon="logo" onClick={handleSideBarOpen} />
-
-            <Typography className={classes.title} variant="h6">
-              {title}
-            </Typography>
-
+    <Stack
+      sx={{
+        minHeight: '100vh', // Full screen height
+        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
+      }}
+    >
+      <Stack component="header">
+        <TopBar
+          startNode={<AppIconButton icon="logo" onClick={onSideBarOpen} />}
+          title={title}
+          endNode={
             <AppIconButton
-              icon={state.darkMode ? 'day' : 'night'}
+              // icon={state.darkMode ? 'day' : 'night'} // Variant 1
+              icon="daynight" // Variant 2
               title={state.darkMode ? 'Switch to Light mode' : 'Switch to Dark mode'}
-              color="primary"
-              onClick={handleSwitchDarkMode}
+              onClick={onSwitchDarkMode}
             />
-          </Toolbar>
-        </AppBar>
+          }
+        />
 
         <SideBar
           anchor="left"
-          open={openSideBar}
-          variant="temporary"
-          items={SIDE_BAR_PUBLIC_ITEMS}
-          onClose={handleSideBarClose}
+          open={sidebarOpen}
+          variant={sidebarVariant}
+          items={SIDEBAR_ITEMS}
+          onClose={onSideBarClose}
         />
-      </Grid>
+      </Stack>
 
-      <Grid item className={classes.content} component="main">
+      <Stack
+        component="main"
+        sx={{
+          flexGrow: 1, // Takes all possible space
+          padding: 1,
+        }}
+      >
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
-      </Grid>
+      </Stack>
 
-      <Grid item className={classes.footer} component="footer">
-        <BottomNavigation onChange={handleBottomNavigationChange} showLabels>
-          <BottomNavigationAction label="Login" value="/auth/login" icon={<AppIcon icon="login" />} />
-          <BottomNavigationAction label="Signup" value="/auth/signup" icon={<AppIcon icon="signup" />} />
-          <BottomNavigationAction label="About" value="/about" icon={<AppIcon icon="info" />} />
-        </BottomNavigation>
-      </Grid>
-    </Grid>
+      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOMBAR_ITEMS} />}</Stack>
+    </Stack>
   );
 };
 

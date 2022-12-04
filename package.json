@@ -1,6 +1,6 @@
 {
   "name": "react-typescript-material",
-  "version": "2.0.11",
+  "version": "2.0.13",
   "description": "_DESCRIPTION_",
   "author": {
     "name": "Anton Karpenko",
@@ -12,11 +12,11 @@
     "react",
     "typescript",
     "material",
-    "material ui"
+    "mui"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/karpolan/react-typescript-material-ui-with-auth-starter.git"
+    "url": "put your repo url here..."
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,6 +45,7 @@
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "@tsconfig/create-react-app": "latest",
     "@types/jest": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
@@ -52,12 +53,6 @@
     "@types/react-router-dom": "latest",
     "prettier": "latest",
     "typescript": "latest"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

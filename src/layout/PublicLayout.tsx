@@ -84,14 +84,14 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
     if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
   }, [sideBarVisible]);
 
-  console.log(
-    'Render using PublicLayout, onMobile:',
-    onMobile,
-    'sidebarOpen:',
-    sidebarOpen,
-    'sidebarVariant:',
-    sidebarVariant
-  );
+  // console.log(
+  //   'Render using PublicLayout, onMobile:',
+  //   onMobile,
+  //   'sidebarOpen:',
+  //   sidebarOpen,
+  //   'sidebarVariant:',
+  //   sidebarVariant
+  // );
 
   return (
     <Stack

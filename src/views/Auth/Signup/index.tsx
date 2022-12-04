@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { NotFound } from '../..';
+import { NotFoundView } from '../..';
 import SignupView from './SignupView';
 import ConfirmEmailView from './ConfirmEmailView';
 
@@ -12,7 +12,7 @@ const SignupRoutes = () => {
     <Routes>
       <Route path="/" element={<SignupView />} />
       <Route path="confirm-email" element={<ConfirmEmailView />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundView />} />
     </Routes>
   );
 };

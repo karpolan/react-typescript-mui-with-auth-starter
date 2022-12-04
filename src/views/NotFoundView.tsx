@@ -1,8 +1,8 @@
 /**
  * "Not Found" aka "Error 404" view
  */
-const PageNotFoundView = () => {
+const NotFoundViewView = () => {
   return <div>Page not found!</div>;
 };
 
-export default PageNotFoundView;
+export default NotFoundViewView;

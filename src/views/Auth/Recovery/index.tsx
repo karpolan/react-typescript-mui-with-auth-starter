@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { NotFound } from '../..';
+import { NotFoundView } from '../..';
 import RecoveryPasswordView from './RecoveryPasswordView';
 
 /**
@@ -11,7 +11,7 @@ const RecoveryRoutes = () => {
     <Routes>
       <Route path="/" element={<RecoveryPasswordView />} />
       <Route path="password" element={<RecoveryPasswordView />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundView />} />
     </Routes>
   );
 };

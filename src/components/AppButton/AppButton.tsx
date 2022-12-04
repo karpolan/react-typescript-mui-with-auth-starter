@@ -1,72 +1,92 @@
-import { FunctionComponent } from 'react';
-import clsx from 'clsx';
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import Box from '@mui/material/Box';
+import { ElementType, FunctionComponent, ReactNode, useMemo } from 'react';
 import Button, { ButtonProps } from '@mui/material/Button';
-import { buttonStylesByNames, ColorName } from '../../utils/style';
+import AppIcon from '../AppIcon';
+import AppLink from '../AppLink';
+import { APP_BUTTON_VARIANT } from '../config';
 
-/**
- * Note: You can change these const to control default appearance of the AppButton component
- */
-const APP_BUTTON_VARIANT = 'contained'; // | 'text' | 'outlined'
-const APP_BUTTON_MARGIN = 1;
+const MUI_BUTTON_COLORS = ['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning'];
 
-const useStyles = makeStyles((theme: Theme) => ({
-  box: {
-    display: 'inline-block',
-  },
-  // Add "filled" styles for Material UI names 'primary', 'secondary', 'warning', and so on
-  ...buttonStylesByNames(theme),
-}));
-
-interface Props extends Omit<ButtonProps, 'color'> {
-  color?: ColorName | 'inherit';
-  label?: string; // Alternate to text
-  text?: string; // Alternate to label
-  m?: number;
-  mt?: number;
-  mb?: number;
-  ml?: number;
-  mr?: number;
+export interface AppButtonProps extends Omit<ButtonProps, 'color' | 'endIcon' | 'startIcon'> {
+  color?: string; // Not only 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+  endIcon?: string | ReactNode;
+  label?: string; // Alternate to .text
+  text?: string; // Alternate to .label
+  startIcon?: string | ReactNode;
   // Missing props
-  component?: React.ElementType; // Could be RouterLink, AppLink, etc.
+  component?: ElementType; // Could be RouterLink, AppLink, <a>, etc.
   to?: string; // Link prop
   href?: string; // Link prop
   openInNewTab?: boolean; // Link prop
   underline?: 'none' | 'hover' | 'always'; // Link prop
 }
 
+const DEFAULT_SX_VALUES = {
+  margin: 1, // By default the AppButton has theme.spacing(1) margin on all sides
+};
+
 /**
  * Application styled Material UI Button with Box around to specify margins using props
- * @param {string} [color] - name of color from Material UI palette 'primary', 'secondary', 'warning', and so on
- * @param {string} [children] - content to render, overrides .label and .text
+ * @component AppButton
+ * @param {string} [color] - when passing MUI value ('primary', 'secondary', and so on), it is color of the button body, otherwise it is color of text and icons
+ * @param {string} [children] - content to render, overrides .label and .text props
+ * @param {string | ReactNode} [endIcon] - name of AppIcon or ReactNode to show after the button label
+ * @param {string} [href] - external link URI
  * @param {string} [label] - text to render, alternate to .text
+ * @param {boolean} [openInNewTab] - link will be opened in new tab when true
+ * @param {string | ReactNode} [startIcon] - name of AppIcon or ReactNode to show before the button label
+ * @param {Array<func| object| bool> | func | object} [sx] - additional CSS styles to apply to the button
  * @param {string} [text] - text to render, alternate to .label
+ * @param {string} [to] - internal link URI
+ * @param {string} [underline] - controls underline style when button used as link, one of 'none', 'hover', or 'always'
+ * @param {string} [variant] - MUI variant of the button, one of 'text', 'outlined', or 'contained'
  */
-const AppButton: FunctionComponent<Props> = ({
+const AppButton: FunctionComponent<AppButtonProps> = ({
   children,
-  className,
-  color = 'default',
+  color: propColor = 'inherit',
+  component: propComponent,
+  endIcon,
   label,
-  m = 0,
-  mt = APP_BUTTON_MARGIN,
-  mb = APP_BUTTON_MARGIN,
-  ml = APP_BUTTON_MARGIN,
-  mr = APP_BUTTON_MARGIN,
+  startIcon,
+  sx: propSx,
   text,
   underline = 'none',
   variant = APP_BUTTON_VARIANT,
   ...restOfProps
 }) => {
-  const classes = useStyles();
-  const classButton = clsx(classes[color as ColorName], className);
+  const iconStart: ReactNode = useMemo(
+    () => (!startIcon ? undefined : typeof startIcon === 'string' ? <AppIcon icon={String(startIcon)} /> : startIcon),
+    [startIcon]
+  );
+
+  const iconEnd: ReactNode = useMemo(
+    () => (!endIcon ? undefined : typeof endIcon === 'string' ? <AppIcon icon={String(endIcon)} /> : endIcon),
+    [endIcon]
+  );
+
+  const isMuiColor = useMemo(() => MUI_BUTTON_COLORS.includes(propColor), [propColor]);
+
+  const componentToRender =
+    !propComponent && (restOfProps?.href || restOfProps?.to) ? AppLink : propComponent ?? Button;
+
+  const colorToRender = isMuiColor ? (propColor as ButtonProps['color']) : 'inherit';
+  const sxToRender = {
+    ...DEFAULT_SX_VALUES,
+    ...propSx,
+    ...(isMuiColor ? {} : { color: propColor }),
+  };
+
   return (
-    <Box {...{ m, mt, mb, ml, mr }} className={classes.box}>
-      <Button className={classButton} variant={variant} {...{ ...restOfProps, underline }}>
-        {children || label || text}
-      </Button>
-    </Box>
+    <Button
+      component={componentToRender}
+      color={colorToRender}
+      endIcon={iconEnd}
+      startIcon={iconStart}
+      sx={sxToRender}
+      variant={variant}
+      {...{ ...restOfProps, underline }}
+    >
+      {children || label || text}
+    </Button>
   );
 };
 

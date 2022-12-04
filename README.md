@@ -16,25 +16,29 @@ The **TypeScript** edition of **Create React App** plus **Material UI** with set
 
 In the project directory, you can run:
 
-### `yarn start` or `yarn dev` or `npm start` or `npm run dev`
+### `npm start` or `npm run dev`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn type` or `npm run type`
+### `npm run type`
 
-Checks the code for errors and missing things
+Checks the code for errors and missing things using **TypeScript compiler**
 
-### `yarn format` or `npm run format`
+### `npm run lint`
+
+Checks the code for errors and missing things using **ESLint**
+
+### `npm run format`
 
 Formats the code according to `./prettierrc.js` config
 
-### `yarn test` or `npm test`
+### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build` or `npm run build`
+### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.

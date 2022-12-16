@@ -1,9 +1,7 @@
 import { forwardRef, ReactNode } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
-
-const DEFAULT_APP_LINK_COLOR = 'textSecondary'; // 'primary' // 'secondary'
-const DEFAULT_APP_LINK_UNDERLINE = 'hover'; // 'always
+import { APP_LINK_COLOR, APP_LINK_UNDERLINE } from '../config';
 
 interface Props extends MuiLinkProps {
   children: ReactNode;
@@ -24,8 +22,8 @@ const AppLink = forwardRef<any, Props>(
   (
     {
       children,
-      color = DEFAULT_APP_LINK_COLOR,
-      underline = DEFAULT_APP_LINK_UNDERLINE,
+      color = APP_LINK_COLOR,
+      underline = APP_LINK_UNDERLINE,
       to = '',
       href,
       openInNewTab = Boolean(href), // Open external links in new Tab by default

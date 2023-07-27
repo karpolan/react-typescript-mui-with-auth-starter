@@ -5,11 +5,11 @@ import { AppIconButton, ErrorBoundary } from '../components';
 import { LinkToPage } from '../utils/type';
 import { useOnMobile } from '../hooks/layout';
 import {
-  SIDEBAR_DESKTOP_ANCHOR,
-  SIDEBAR_MOBILE_ANCHOR,
-  SIDEBAR_WIDTH,
-  TOPBAR_DESKTOP_HEIGHT,
-  TOPBAR_MOBILE_HEIGHT,
+  SIDE_BAR_DESKTOP_ANCHOR,
+  SIDE_BAR_MOBILE_ANCHOR,
+  SIDE_BAR_WIDTH,
+  TOP_BAR_DESKTOP_HEIGHT,
+  TOP_BAR_MOBILE_HEIGHT,
 } from './config';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
@@ -20,7 +20,7 @@ const TITLE_PRIVATE = '_TITLE_ app'; // Title for pages after authentication
 /**
  * SideBar navigation items with links
  */
-const SIDEBAR_ITEMS: Array<LinkToPage> = [
+const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Home',
     path: '/',
@@ -45,7 +45,7 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
 
 /**
  * Renders "Private Layout" composition
- * @component PrivateLayout
+ * @layout PrivateLayout
  */
 const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const navigation = useNavigate();
@@ -65,7 +65,7 @@ const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
 
   const onLogoClick = useCallback(() => {
     // Navigate to first SideBar's item or to '/' when clicking on Logo/Menu icon when SideBar is already visible
-    navigation(SIDEBAR_ITEMS?.[0]?.path || '/');
+    navigation(SIDE_BAR_ITEMS?.[0]?.path || '/');
   }, [navigation]);
 
   const onSideBarOpen = () => {
@@ -90,9 +90,9 @@ const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
       direction="column"
       sx={{
         minHeight: '100vh', // Full screen height
-        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
-        paddingLeft: sidebarOpen && SIDEBAR_DESKTOP_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
-        paddingRight: sidebarOpen && SIDEBAR_DESKTOP_ANCHOR.includes('right') ? SIDEBAR_WIDTH : 0,
+        paddingTop: onMobile ? TOP_BAR_MOBILE_HEIGHT : TOP_BAR_DESKTOP_HEIGHT,
+        paddingLeft: sidebarOpen && SIDE_BAR_DESKTOP_ANCHOR.includes('left') ? SIDE_BAR_WIDTH : 0,
+        paddingRight: sidebarOpen && SIDE_BAR_DESKTOP_ANCHOR.includes('right') ? SIDE_BAR_WIDTH : 0,
       }}
     >
       <Stack component="header">
@@ -102,10 +102,10 @@ const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
         />
 
         <SideBar
-          anchor={onMobile ? SIDEBAR_MOBILE_ANCHOR : SIDEBAR_DESKTOP_ANCHOR}
+          anchor={onMobile ? SIDE_BAR_MOBILE_ANCHOR : SIDE_BAR_DESKTOP_ANCHOR}
           open={sidebarOpen}
           variant={sidebarVariant}
-          items={SIDEBAR_ITEMS}
+          items={SIDE_BAR_ITEMS}
           onClose={onSideBarClose}
         />
       </Stack>

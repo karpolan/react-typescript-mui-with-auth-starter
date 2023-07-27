@@ -4,7 +4,7 @@ import { useAppStore } from '../store/AppStore';
 import { ErrorBoundary, AppIconButton } from '../components';
 import { LinkToPage } from '../utils/type';
 import { useOnMobile } from '../hooks/layout';
-import { BOTTOMBAR_DESKTOP_VISIBLE, TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './config';
+import { BOTTOM_BAR_DESKTOP_VISIBLE, TOP_BAR_DESKTOP_HEIGHT, TOP_BAR_MOBILE_HEIGHT } from './config';
 import { useEventSwitchDarkMode } from '../hooks/event';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
@@ -16,7 +16,7 @@ const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentica
 /**
  * SideBar navigation items with links
  */
-const SIDEBAR_ITEMS: Array<LinkToPage> = [
+const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -37,7 +37,7 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
 /**
  * BottomBar navigation items with links
  */
-const BOTTOMBAR_ITEMS: Array<LinkToPage> = [
+const BOTTOM_BAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -57,13 +57,14 @@ const BOTTOMBAR_ITEMS: Array<LinkToPage> = [
 
 /**
  * Renders "Public Layout" composition
+ * @layout PublicLayout
  */
 const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const onMobile = useOnMobile();
   const onSwitchDarkMode = useEventSwitchDarkMode();
   const [sideBarVisible, setSideBarVisible] = useState(false);
   const [state] = useAppStore();
-  const bottomBarVisible = onMobile || BOTTOMBAR_DESKTOP_VISIBLE;
+  const bottomBarVisible = onMobile || BOTTOM_BAR_DESKTOP_VISIBLE;
 
   // Variant 1 - Sidebar is static on desktop and is a drawer on mobile
   // const sidebarOpen = onMobile ? sideBarVisible : true;
@@ -97,7 +98,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
     <Stack
       sx={{
         minHeight: '100vh', // Full screen height
-        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
+        paddingTop: onMobile ? TOP_BAR_MOBILE_HEIGHT : TOP_BAR_DESKTOP_HEIGHT,
       }}
     >
       <Stack component="header">
@@ -118,7 +119,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
           anchor="left"
           open={sidebarOpen}
           variant={sidebarVariant}
-          items={SIDEBAR_ITEMS}
+          items={SIDE_BAR_ITEMS}
           onClose={onSideBarClose}
         />
       </Stack>
@@ -133,7 +134,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
       </Stack>
 
-      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOMBAR_ITEMS} />}</Stack>
+      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOM_BAR_ITEMS} />}</Stack>
     </Stack>
   );
 };

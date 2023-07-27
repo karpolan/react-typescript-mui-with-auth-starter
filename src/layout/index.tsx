@@ -1,3 +1,3 @@
-import Layout from './Layout';
+import Layout from './CurrentLayout';
 
 export { Layout as default, Layout };

@@ -5,7 +5,7 @@ import { useAppStore } from '../../store/AppStore';
 import { LinkToPage } from '../../utils/type';
 import { useEventLogout, useEventSwitchDarkMode, useIsAuthenticated, useOnMobile } from '../../hooks';
 import SideBarNavList from './SideBarNavList';
-import { SIDEBAR_WIDTH, TOPBAR_DESKTOP_HEIGHT } from '../config';
+import { SIDE_BAR_WIDTH, TOP_BAR_DESKTOP_HEIGHT } from '../config';
 import UserInfo from '../../components/UserInfo';
 
 interface Props extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'variant' | 'onClose'> {
@@ -46,9 +46,9 @@ const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClo
       variant={variant}
       PaperProps={{
         sx: {
-          width: SIDEBAR_WIDTH,
-          marginTop: onMobile ? 0 : variant === 'temporary' ? 0 : TOPBAR_DESKTOP_HEIGHT,
-          height: onMobile ? '100%' : variant === 'temporary' ? '100%' : `calc(100% - ${TOPBAR_DESKTOP_HEIGHT})`,
+          width: SIDE_BAR_WIDTH,
+          marginTop: onMobile ? 0 : variant === 'temporary' ? 0 : TOP_BAR_DESKTOP_HEIGHT,
+          height: onMobile ? '100%' : variant === 'temporary' ? '100%' : `calc(100% - ${TOP_BAR_DESKTOP_HEIGHT})`,
         },
       }}
       onClose={onClose}

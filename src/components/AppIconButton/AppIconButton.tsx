@@ -4,7 +4,16 @@ import AppIcon from '../AppIcon';
 import AppLink from '../AppLink';
 import { alpha } from '@mui/material';
 
-const MUI_ICON_BUTTON_COLORS = ['inherit', 'default', 'primary', 'secondary', 'success', 'error', 'info', 'warning'];
+export const MUI_ICON_BUTTON_COLORS = [
+  'inherit',
+  'default',
+  'primary',
+  'secondary',
+  'success',
+  'error',
+  'info',
+  'warning',
+];
 
 interface Props extends Omit<IconButtonProps, 'color'> {
   color?: string; // Not only 'inherit' | 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',

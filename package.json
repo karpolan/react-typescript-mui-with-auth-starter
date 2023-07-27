@@ -1,6 +1,6 @@
 {
   "name": "react-typescript-material",
-  "version": "2.0.15",
+  "version": "2.1.17",
   "description": "_DESCRIPTION_",
   "author": {
     "name": "Anton Karpenko",
@@ -19,12 +19,12 @@
     "url": "put your repo url here..."
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "dev": "npm i && react-scripts start",
     "format": "prettier ./src --write",
     "format:all": "prettier . --write",
     "lint": "eslint ./src --ext .js,.ts,.tsx",
+    "start": "react-scripts start",
     "type": "tsc",
     "test": "react-scripts test"
   },

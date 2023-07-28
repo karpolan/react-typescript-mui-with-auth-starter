@@ -9,6 +9,7 @@ const TOKEN_QUERY_PARAM = 'token';
 /**
  * Renders "Confirm Email" view for Signup flow
  * url: /auth/signup/confirm-email
+ * @page ConfirmEmail
  */
 const ConfirmEmailView = () => {
   const [email, setEmail] = useState<string>('');

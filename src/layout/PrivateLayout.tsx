@@ -36,12 +36,15 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
     path: '/about',
     icon: 'info',
   },
-  // {
-  //   title: 'Dev Tools',
-  //   path: '/dev',
-  //   icon: 'settings',
-  // },
 ];
+
+if (process.env.REACT_APP_DEBUG === 'true') {
+  SIDE_BAR_ITEMS.push({
+    title: '[Debug Tools]',
+    path: '/dev',
+    icon: 'settings',
+  });
+}
 
 /**
  * Renders "Private Layout" composition

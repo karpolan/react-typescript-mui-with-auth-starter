@@ -5,6 +5,7 @@ import { AppLink } from '../../components';
 /**
  * Renders "Welcome" view
  * url: /
+ * @page Welcome
  */
 const WelcomeView = () => {
   return (

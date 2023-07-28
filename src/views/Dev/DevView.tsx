@@ -1,13 +1,14 @@
 import { Card, CardActions, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
 import { AppButton, AppLink, AppIconButton } from '../../components';
-import DialogsSection from './DialogsSection';
 
 /**
- * Renders "About" view
- * url: /about
- * @page About
+ * Renders Development tools when env.REACT_APP_DEBUG is true
+ * url: /dev
+ * @page Dev
  */
-const AboutView = () => {
+const DevView = () => {
+  if (process.env.REACT_APP_DEBUG !== 'true') return null; // Hide this page on when env.REACT_APP_DEBUG is not set
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={3}>
@@ -22,9 +23,9 @@ const AboutView = () => {
         </Card>
       </Grid>
 
-      <Grid item xs={12} md={3}>
+      {/* <Grid item xs={12} md={3}>
         <DialogsSection />
-      </Grid>
+      </Grid> */}
 
       <Grid item xs={12} md={6}>
         <Card>
@@ -140,4 +141,4 @@ const AboutView = () => {
   );
 };
 
-export default AboutView;
+export default DevView;

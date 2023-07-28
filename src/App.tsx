@@ -1,27 +1,22 @@
-import { AppStore } from './store';
 import { AppThemeProvider } from './theme';
-import Routes from './routes';
-import Layout from './layout';
+import { AppStore } from './store';
 import { ErrorBoundary } from './components';
-import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes';
 
 /**
  * Root Application Component
+ * @component MainApp
  */
-const App = () => {
+const MainApp = () => {
   return (
     <ErrorBoundary name="App">
       <AppStore>
         <AppThemeProvider>
-          <BrowserRouter>
-            <Layout>
-              <Routes />
-            </Layout>
-          </BrowserRouter>
+          <Routes />
         </AppThemeProvider>
       </AppStore>
     </ErrorBoundary>
   );
 };
 
-export default App;
+export default MainApp;

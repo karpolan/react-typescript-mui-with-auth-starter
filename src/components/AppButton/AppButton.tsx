@@ -6,6 +6,10 @@ import { APP_BUTTON_VARIANT } from '../config';
 
 const MUI_BUTTON_COLORS = ['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning'];
 
+const DEFAULT_SX_VALUES = {
+  margin: 1, // By default the AppButton has theme.spacing(1) margin on all sides
+};
+
 export interface AppButtonProps extends Omit<ButtonProps, 'color' | 'endIcon' | 'startIcon'> {
   color?: string; // Not only 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
   endIcon?: string | ReactNode;
@@ -19,10 +23,6 @@ export interface AppButtonProps extends Omit<ButtonProps, 'color' | 'endIcon' | 
   openInNewTab?: boolean; // Link prop
   underline?: 'none' | 'hover' | 'always'; // Link prop
 }
-
-const DEFAULT_SX_VALUES = {
-  margin: 1, // By default the AppButton has theme.spacing(1) margin on all sides
-};
 
 /**
  * Application styled Material UI Button with Box around to specify margins using props
@@ -47,7 +47,7 @@ const AppButton: FunctionComponent<AppButtonProps> = ({
   endIcon,
   label,
   startIcon,
-  sx: propSx,
+  sx: propSx = DEFAULT_SX_VALUES,
   text,
   underline = 'none',
   variant = APP_BUTTON_VARIANT,
@@ -70,7 +70,6 @@ const AppButton: FunctionComponent<AppButtonProps> = ({
 
   const colorToRender = isMuiColor ? (propColor as ButtonProps['color']) : 'inherit';
   const sxToRender = {
-    ...DEFAULT_SX_VALUES,
     ...propSx,
     ...(isMuiColor ? {} : { color: propColor }),
   };

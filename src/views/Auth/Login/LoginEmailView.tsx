@@ -28,11 +28,12 @@ interface FormStateValues {
 /**
  * Renders "Login with Email" view for Login flow
  * url: /auth/login/email
+ * @page LoginEmail
  */
 const LoginEmailView = () => {
   const navigate = useNavigate();
   const [, dispatch] = useAppStore();
-  const [formState, , /* setFormState */ onFieldChange, fieldGetError, fieldHasError] = useAppForm({
+  const { formState, onFieldChange, fieldGetError, fieldHasError, isFormValid } = useAppForm({
     validationSchema: VALIDATE_FORM_LOGIN_EMAIL,
     initialValues: { email: '', password: '' } as FormStateValues,
   });
@@ -107,7 +108,7 @@ const LoginEmailView = () => {
             </AppAlert>
           ) : null}
           <Grid container justifyContent="center" alignItems="center">
-            <AppButton type="submit" disabled={!formState.isValid}>
+            <AppButton type="submit" disabled={!isFormValid()}>
               Login with Email
             </AppButton>
             <Button variant="text" color="inherit" component={AppLink} to="/auth/recovery/password">

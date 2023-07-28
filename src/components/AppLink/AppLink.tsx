@@ -3,7 +3,12 @@ import { Link as RouterLink } from 'react-router-dom';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { APP_LINK_COLOR, APP_LINK_UNDERLINE } from '../config';
 
-interface Props extends MuiLinkProps {
+export const EXTERNAL_LINK_PROPS = {
+  target: '_blank',
+  rel: 'noopener noreferrer',
+};
+
+export interface AppLinkProps extends MuiLinkProps {
   children: ReactNode;
   to?: string;
   href?: string;
@@ -18,7 +23,7 @@ interface Props extends MuiLinkProps {
  * @param {string} [href] - external link URI
  * @param {boolean} [openInNewTab] - link will be opened in new tab when true
  */
-const AppLink = forwardRef<any, Props>(
+const AppLink = forwardRef<any, AppLinkProps>(
   (
     {
       children,
@@ -34,7 +39,7 @@ const AppLink = forwardRef<any, Props>(
     const propsToRender = {
       color,
       underline,
-      ...(openInNewTab ? { target: '_blank', rel: 'noreferrer noopener' } : {}),
+      ...(openInNewTab && EXTERNAL_LINK_PROPS),
       ...restOfProps,
     };
     return href ? (

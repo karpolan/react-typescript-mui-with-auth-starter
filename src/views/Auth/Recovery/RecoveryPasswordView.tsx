@@ -21,10 +21,11 @@ interface Props {
 /**
  * Renders "Recover Password" view for Login flow
  * url: /uth/recovery/password
+ * @page RecoveryPassword
  * @param {string} [props.email] - pre-populated email in case the user already enters it
  */
 const RecoveryPasswordView = ({ email = '' }: Props) => {
-  const [formState, , /* setFormState */ onFieldChange, fieldGetError, fieldHasError] = useAppForm({
+  const { formState, onFieldChange, fieldGetError, fieldHasError, isFormValid } = useAppForm({
     validationSchema: VALIDATE_FORM_RECOVERY_PASSWORD,
     initialValues: { email } as FormStateValues,
   });
@@ -65,7 +66,7 @@ const RecoveryPasswordView = ({ email = '' }: Props) => {
           ) : null}
 
           <Grid container justifyContent="center" alignItems="center">
-            <AppButton type="submit" disabled={!formState.isValid}>
+            <AppButton type="submit" disabled={!isFormValid()}>
               Send Password Recovery Email
             </AppButton>
           </Grid>

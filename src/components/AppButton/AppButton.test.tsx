@@ -1,17 +1,9 @@
 import { FunctionComponent } from 'react';
 import { render, screen, within } from '@testing-library/react';
-import createCache from '@emotion/cache';
-import { AppThemeProvider } from '../../theme';
+import { AppThemeProvider, createEmotionCache } from '../../theme';
 import AppButton, { AppButtonProps } from './AppButton';
 import DefaultIcon from '@mui/icons-material/MoreHoriz';
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function createEmotionCache() {
-  return createCache({ key: 'css', prepend: true });
-}
+import { randomText, capitalize } from '../../utils';
 
 /**
  * AppButton wrapped with Theme Provider
@@ -30,20 +22,19 @@ const ComponentToTest: FunctionComponent<AppButtonProps> = (props) => (
  */
 function testButtonColor(colorName: string, ignoreClassName = false, expectedClassName = colorName) {
   it(`supports "${colorName}" color`, () => {
+    const testId = randomText(8);
     let text = `${colorName} button`;
     render(
       <ComponentToTest
         color={colorName}
+        data-testid={testId}
         variant="contained" // Required to get correct CSS class name
       >
         {text}
       </ComponentToTest>
     );
 
-    let span = screen.getByText(text); // <span> with specific text
-    expect(span).toBeDefined();
-
-    let button = span.closest('button'); // parent <button> element
+    let button = screen.getByTestId(testId);
     expect(button).toBeDefined();
     // console.log('button.className:', button?.className);
     if (!ignoreClassName) {
@@ -54,27 +45,38 @@ function testButtonColor(colorName: string, ignoreClassName = false, expectedCla
   });
 }
 
-describe('AppButton component', () => {
+describe('<AppButton/> component', () => {
   //   beforeEach(() => {});
 
   it('renders itself', () => {
     let text = 'sample button';
-    render(<ComponentToTest>{text}</ComponentToTest>);
-    let span = screen.getByText(text);
-    expect(span).toBeDefined();
-    expect(span).toHaveTextContent(text);
-    let button = span.closest('button'); // parent <button> element
+    const testId = randomText(8);
+    render(<ComponentToTest data-testid={testId}>{text}</ComponentToTest>);
+    const button = screen.getByTestId(testId);
     expect(button).toBeDefined();
+    expect(button).toHaveAttribute('role', 'button');
     expect(button).toHaveAttribute('type', 'button'); // not "submit" or "input" by default
+  });
+
+  it('has .margin style by default', () => {
+    let text = 'button with default margin';
+    const testId = randomText(8);
+    render(<ComponentToTest data-testid={testId}>{text}</ComponentToTest>);
+    const button = screen.getByTestId(testId);
+    expect(button).toBeDefined();
+    expect(button).toHaveStyle('margin: 8px'); // Actually it is theme.spacing(1) value
   });
 
   it('supports .className property', () => {
     let text = 'button with specific class';
     let className = 'someClassName';
-    render(<ComponentToTest className={className}>{text}</ComponentToTest>);
-    let span = screen.getByText(text);
-    expect(span).toBeDefined();
-    let button = span.closest('button'); // parent <button> element
+    const testId = randomText(8);
+    render(
+      <ComponentToTest data-testid={testId} className={className}>
+        {text}
+      </ComponentToTest>
+    );
+    const button = screen.getByTestId(testId);
     expect(button).toBeDefined();
     expect(button).toHaveClass(className);
   });

@@ -1,9 +1,11 @@
-import ErrorBoundary from './ErrorBoundary';
-import AppLink from './AppLink';
+import AppAlert from './AppAlert';
 import AppButton from './AppButton';
+import AppForm from './AppForm';
 import AppIcon from './AppIcon';
 import AppIconButton from './AppIconButton';
-import AppAlert from './AppAlert';
-import AppForm from './AppForm';
+import AppLink from './AppLink';
+import AppLoading from './AppLoading';
+import AppView from './AppView';
+import ErrorBoundary from './ErrorBoundary';
 
-export { ErrorBoundary, AppLink, AppButton, AppIcon, AppIconButton, AppAlert, AppForm };
+export { ErrorBoundary, AppAlert, AppForm, AppButton, AppIcon, AppIconButton, AppLink, AppLoading, AppView };

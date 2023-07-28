@@ -75,6 +75,7 @@ interface FormStateValues {
 /**
  * Renders "Signup" view
  * url: /auth/signup
+ * @page Signup
  */
 const SignupView = () => {
   const navigate = useNavigate();
@@ -83,7 +84,7 @@ const SignupView = () => {
     ...VALIDATE_FORM_SIGNUP,
     ...VALIDATE_EXTENSION,
   });
-  const [formState, , /* setFormState */ onFieldChange, fieldGetError, fieldHasError] = useAppForm({
+  const { formState, onFieldChange, fieldGetError, fieldHasError, isFormValid } = useAppForm({
     validationSchema: validationSchema, // the state value, so could be changed in time
     initialValues: {
       firstName: '',
@@ -243,7 +244,7 @@ const SignupView = () => {
           )}
           <FormControlLabel
             control={<Checkbox required name="agree" checked={agree} onChange={handleAgreeClick} />}
-            label="You must agree with Terms of Use and Privacy Policy to use our service *"
+            label="You must agree with Terms of Use and Privacy Policy to use our service"
           />
 
           {error ? (
@@ -253,7 +254,7 @@ const SignupView = () => {
           ) : null}
 
           <Grid container justifyContent="center" alignItems="center">
-            <AppButton type="submit" disabled={!(formState.isValid && agree)}>
+            <AppButton type="submit" disabled={!(isFormValid() && agree)}>
               Confirm and Sign Up
             </AppButton>
           </Grid>

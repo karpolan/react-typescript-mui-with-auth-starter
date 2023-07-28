@@ -1,4 +1,4 @@
-import { IS_SERVER } from './utils';
+import { IS_SERVER } from './environment';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 

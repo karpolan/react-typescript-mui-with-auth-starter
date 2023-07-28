@@ -11,10 +11,9 @@ export const SHARED_CONTROL_PROPS = {
 
 // "Schema" for formState
 interface FormState {
-  isValid: boolean;
-  values: object;
-  touched: object;
-  errors: object;
+  values: object; // List of Input Values as string|boolean
+  touched?: object; // List of Inputs have been touched as boolean
+  errors?: object; // List of Errors for every field as array[] of strings
 }
 
 /**
@@ -22,10 +21,9 @@ interface FormState {
  * Usage: const [formState, setFormState] = useState(DEFAULT_FORM_STATE);
  */
 export const DEFAULT_FORM_STATE: FormState = {
-  isValid: false, // True when all Input Values are entered correctly
-  values: {}, // List of Input Values as string|boolean
-  touched: {}, // List of Inputs have been touched as boolean
-  errors: {}, // List of Errors for every field as array[] of strings
+  values: {},
+  touched: {},
+  errors: {},
 };
 
 /**
@@ -58,6 +56,18 @@ interface UseAppFormParams {
   initialValues: object;
 }
 
+// Return type for useAppForm() hook
+
+interface UseAppFormReturn {
+  formState: FormState;
+  setFormState: (formState: FormState) => void;
+  onFieldChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  fieldGetError: (fieldName: string) => string;
+  fieldHasError: (fieldName: string) => boolean;
+  isFormValid: () => boolean;
+  isFormTouched: () => boolean;
+}
+
 /**
  * Application "standard" From as Hook
  * Note: the "name" prop of all Form controls must be set! We use event.target?.name for binding data.
@@ -68,7 +78,7 @@ interface UseAppFormParams {
  * @param {object} options.validationSchema - validation schema in 'validate.js' format
  * @param {object} [options.initialValues] - optional initialization data for formState.values
  */
-export function useAppForm({ validationSchema, initialValues = {} }: UseAppFormParams) {
+export function useAppForm({ validationSchema, initialValues = {} }: UseAppFormParams): UseAppFormReturn {
   // Validate params
   if (!validationSchema) {
     throw new Error('useAppForm() - the option `validationSchema` is required');
@@ -88,7 +98,6 @@ export function useAppForm({ validationSchema, initialValues = {} }: UseAppFormP
     const errors = validate(formState.values, validationSchema);
     setFormState((currentFormState) => ({
       ...currentFormState,
-      isValid: errors ? false : true,
       errors: errors || {},
     }));
   }, [validationSchema, formState.values]);
@@ -120,6 +129,20 @@ export function useAppForm({ validationSchema, initialValues = {} }: UseAppFormP
   // Verifies does the Field with given Name has the Error
   const fieldHasError = (fieldName: string): boolean => formHasError(formState, fieldName);
 
+  // Verifies does form has any error
+  const isFormValid = () => Object.keys(formState?.errors ?? {}).length < 1;
+
+  // Verifies does any of the form fields has been touched
+  const isFormTouched = () => Object.keys(formState?.touched ?? {}).length > 0;
+
   // Return state and methods
-  return [formState, setFormState, onFieldChange, fieldGetError, fieldHasError] as const;
+  return {
+    formState,
+    isFormValid,
+    isFormTouched,
+    onFieldChange,
+    fieldGetError,
+    fieldHasError,
+    setFormState,
+  };
 }

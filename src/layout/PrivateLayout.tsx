@@ -27,7 +27,7 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
     icon: 'home',
   },
   {
-    title: 'Profile',
+    title: 'Profile (404)',
     path: '/user',
     icon: 'account',
   },

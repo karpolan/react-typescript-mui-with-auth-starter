@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
-import { AppButton, AppLink, AppIconButton } from '../../components';
+import { AppButton, AppLink, AppIconButton, AppView } from '../../components';
 import DialogsSection from './DialogsSection';
 
 /**
@@ -9,7 +9,7 @@ import DialogsSection from './DialogsSection';
  */
 const AboutView = () => {
   return (
-    <Grid container spacing={2}>
+    <AppView>
       <Grid item xs={12} md={3}>
         <Card>
           <CardHeader title="Application title here..." subheader="Version 0.1" />
@@ -136,7 +136,7 @@ const AboutView = () => {
           </CardContent>
         </Card>
       </Grid>
-    </Grid>
+    </AppView>
   );
 };
 

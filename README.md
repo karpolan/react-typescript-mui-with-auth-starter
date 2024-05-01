@@ -1,3 +1,12 @@
+# IMPORTANT UPDATE 2024-05-01
+
+Better use [Vite + React + MUI starter](https://github.com/karpolan/react-mui-vite-ts) instead of this one.
+
+Reasons:
+- [Create React App](https://create-react-app.dev/) is **not popular** anymore.
+- Development and debugging using **[Vite](https://vitejs.dev/)** is 10x faster than with Webpack.
+
+
 # React + Material UI + Auth starter using TypeScript
 
 The **TypeScript** edition of **Create React App** plus **Material UI** with set of **reusable components** and utilities to build professional **React Application** faster.
